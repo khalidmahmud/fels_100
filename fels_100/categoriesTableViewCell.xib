@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="410" height="87"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="food-07.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="jhM-xR-Tl0">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="food" translatesAutoresizingMaskIntoConstraints="NO" id="jhM-xR-Tl0">
                         <rect key="frame" x="14" y="15" width="75" height="63"/>
                         <animations/>
                     </imageView>
@@ -52,6 +52,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="food-07.jpg" width="630" height="400"/>
+        <image name="food" width="315" height="200"/>
     </resources>
 </document>
