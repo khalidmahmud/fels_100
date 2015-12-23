@@ -1,18 +1,18 @@
 //
-//  LoginController.m
+//  UpdateController.m
 //  fels_100
 //
-//  Created by Tahia Ata on 12/22/15.
+//  Created by Tahia Ata on 12/23/15.
 //  Copyright © 2015 Abu Khalid. All rights reserved.
 //
 
-#import "LoginController.h"
+#import "UpdateController.h"
 
-@interface LoginController ()
+@interface UpdateController ()
 
 @end
 
-@implementation LoginController
+@implementation UpdateController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
