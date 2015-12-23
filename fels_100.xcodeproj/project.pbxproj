@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36BC0B751C28FFB5006F7FE4 /* categoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC0B741C28FFB5006F7FE4 /* categoriesViewController.m */; };
+		36BC0B7E1C290F7C006F7FE4 /* categoriesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC0B7C1C290F7C006F7FE4 /* categoriesTableViewCell.m */; };
+		36BC0B7F1C290F7C006F7FE4 /* categoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36BC0B7D1C290F7C006F7FE4 /* categoriesTableViewCell.xib */; };
+		36BC0B811C2915E3006F7FE4 /* food-07.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 36BC0B801C2915E3006F7FE4 /* food-07.jpg */; };
 		51E6DDFFCAB59E830AA4015D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B8496B355CC9C66AA4B0B6 /* libPods.a */; };
 		841368B91C22C5F1009E95F4 /* WordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841368B81C22C5F1009E95F4 /* WordListViewController.m */; };
 		847D8EAF1C22A19E008E89F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 847D8EAE1C22A19E008E89F2 /* main.m */; };
@@ -40,8 +44,13 @@
 
 /* Begin PBXFileReference section */
 		1D66B97D692C1A59AF7F3A45 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		841368B71C22C5F1009E95F4 /* WordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordListViewController.h; sourceTree = "<group>"; };
-		841368B81C22C5F1009E95F4 /* WordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListViewController.m; sourceTree = "<group>"; };
+
+		36BC0B731C28FFB5006F7FE4 /* categoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = categoriesViewController.h; sourceTree = "<group>"; };
+		36BC0B741C28FFB5006F7FE4 /* categoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = categoriesViewController.m; sourceTree = "<group>"; };
+		36BC0B7B1C290F7C006F7FE4 /* categoriesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = categoriesTableViewCell.h; sourceTree = "<group>"; };
+		36BC0B7C1C290F7C006F7FE4 /* categoriesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = categoriesTableViewCell.m; sourceTree = "<group>"; };
+		36BC0B7D1C290F7C006F7FE4 /* categoriesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = categoriesTableViewCell.xib; sourceTree = "<group>"; };
+		36BC0B801C2915E3006F7FE4 /* food-07.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "food-07.jpg"; path = "../../../../Desktop/food-07.jpg"; sourceTree = "<group>"; };
 		847D8EAA1C22A19D008E89F2 /* fels_100.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fels_100.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847D8EAE1C22A19E008E89F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		847D8EB01C22A19E008E89F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -176,6 +185,12 @@
 		847D8EE61C22A239008E89F2 /* CategoriesLesson */ = {
 			isa = PBXGroup;
 			children = (
+				36BC0B801C2915E3006F7FE4 /* food-07.jpg */,
+				36BC0B7B1C290F7C006F7FE4 /* categoriesTableViewCell.h */,
+				36BC0B7C1C290F7C006F7FE4 /* categoriesTableViewCell.m */,
+				36BC0B7D1C290F7C006F7FE4 /* categoriesTableViewCell.xib */,
+				36BC0B731C28FFB5006F7FE4 /* categoriesViewController.h */,
+				36BC0B741C28FFB5006F7FE4 /* categoriesViewController.m */,
 				847D8EE21C22A1E7008E89F2 /* CategoriesLesson.storyboard */,
 			);
 			name = CategoriesLesson;
@@ -316,7 +331,9 @@
 				847D8EE91C22A2EC008E89F2 /* WordList.storyboard in Resources */,
 				847D8EBD1C22A19E008E89F2 /* LaunchScreen.storyboard in Resources */,
 				847D8EBA1C22A19E008E89F2 /* Assets.xcassets in Resources */,
+				36BC0B7F1C290F7C006F7FE4 /* categoriesTableViewCell.xib in Resources */,
 				847D8EE31C22A1E7008E89F2 /* CategoriesLesson.storyboard in Resources */,
+				36BC0B811C2915E3006F7FE4 /* food-07.jpg in Resources */,
 				847D8EB81C22A19E008E89F2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -391,9 +408,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				847D8EB21C22A19E008E89F2 /* AppDelegate.m in Sources */,
-				841368B91C22C5F1009E95F4 /* WordListViewController.m in Sources */,
+
+				36BC0B751C28FFB5006F7FE4 /* categoriesViewController.m in Sources */,
 				847D8EAF1C22A19E008E89F2 /* main.m in Sources */,
-				CF0196F61C2909C100892669 /* LoginController.m in Sources */,
+				36BC0B7E1C290F7C006F7FE4 /* categoriesTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
