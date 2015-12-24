@@ -1,14 +1,14 @@
 //
-//  categoriesTableViewCell.m
+//  result_TableViewCell.m
 //  fels_100
 //
-//  Created by Kazi Sharmin Dina on 12/22/15.
+//  Created by Kazi Sharmin Dina on 12/23/15.
 //  Copyright © 2015 Abu Khalid. All rights reserved.
 //
 
-#import "categoriesTableViewCell.h"
+#import "result_TableViewCell.h"
 
-@implementation categoriesTableViewCell
+@implementation result_TableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
