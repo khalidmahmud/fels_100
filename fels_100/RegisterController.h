@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RegisterController : UIViewController
+@interface RegisterController : UIViewController<UITextFieldDelegate>
+
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordConfirmField;
+@property (weak, nonatomic) IBOutlet UITextField *nameField;
+@property (weak, nonatomic) IBOutlet UILabel *infoRequireLabel;
+
+- (BOOL)isValidEmailAddress;
+- (BOOL)checkPassword;
+- (IBAction)registerButton:(id)sender;
+- (IBAction)cancelButton:(id)sender;
 
 @end
