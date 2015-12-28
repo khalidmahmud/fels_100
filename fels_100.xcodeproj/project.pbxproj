@@ -24,6 +24,7 @@
 		847D8ED31C22A19E008E89F2 /* fels_100UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 847D8ED21C22A19E008E89F2 /* fels_100UITests.m */; };
 		847D8EE31C22A1E7008E89F2 /* CategoriesLesson.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847D8EE21C22A1E7008E89F2 /* CategoriesLesson.storyboard */; };
 		847D8EE91C22A2EC008E89F2 /* WordList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847D8EE81C22A2EC008E89F2 /* WordList.storyboard */; };
+		CF6F744B1C2BE25500C44EEF /* DataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6F744A1C2BE25500C44EEF /* DataAccess.m */; };
 		CFAB88C71C2AA76A00886C9F /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFAB88C61C2AA76A00886C9F /* ProfileController.m */; };
 		CFAB88CA1C2AA77B00886C9F /* UpdateController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFAB88C91C2AA77B00886C9F /* UpdateController.m */; };
 		CFAB88CD1C2AA8DB00886C9F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFAB88CC1C2AA8DB00886C9F /* LoginViewController.m */; };
@@ -78,6 +79,8 @@
 		847D8EE21C22A1E7008E89F2 /* CategoriesLesson.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CategoriesLesson.storyboard; sourceTree = "<group>"; };
 		847D8EE81C22A2EC008E89F2 /* WordList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WordList.storyboard; sourceTree = "<group>"; };
 		C7B8496B355CC9C66AA4B0B6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF6F74491C2BE25500C44EEF /* DataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAccess.h; sourceTree = "<group>"; };
+		CF6F744A1C2BE25500C44EEF /* DataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAccess.m; sourceTree = "<group>"; };
 		CFAB88C51C2AA76A00886C9F /* ProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileController.h; sourceTree = "<group>"; };
 		CFAB88C61C2AA76A00886C9F /* ProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileController.m; sourceTree = "<group>"; };
 		CFAB88C81C2AA77B00886C9F /* UpdateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateController.h; sourceTree = "<group>"; };
@@ -140,6 +143,8 @@
 		847D8EAC1C22A19D008E89F2 /* fels_100 */ = {
 			isa = PBXGroup;
 			children = (
+				CF6F74491C2BE25500C44EEF /* DataAccess.h */,
+				CF6F744A1C2BE25500C44EEF /* DataAccess.m */,
 				847D8EE71C22A251008E89F2 /* Delegates */,
 				847D8EE61C22A239008E89F2 /* CategoriesLesson */,
 				847D8EE51C22A230008E89F2 /* WordList */,
@@ -433,6 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF6F744B1C2BE25500C44EEF /* DataAccess.m in Sources */,
 				CFAB88CD1C2AA8DB00886C9F /* LoginViewController.m in Sources */,
 				36084F921C2B9D4A00E728C5 /* testViewController.m in Sources */,
 				847D8EB21C22A19E008E89F2 /* AppDelegate.m in Sources */,

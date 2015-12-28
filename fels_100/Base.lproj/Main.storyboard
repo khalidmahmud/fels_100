@@ -190,12 +190,12 @@
                                     <navigationItem title="Register" id="aU1-AT-Spi">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="zk1-Ga-yWL">
                                             <connections>
-                                                <action selector="cancelButton:" destination="D41-h0-NjU" id="Vg5-uv-3vR"/>
+                                                <action selector="cancelButton:" destination="D41-h0-NjU" id="C3u-4l-SPO"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="Bhs-n9-GCy">
                                             <connections>
-                                                <action selector="registerButton:" destination="D41-h0-NjU" id="JfS-Ar-Dia"/>
+                                                <action selector="registerButton:" destination="D41-h0-NjU" id="TBF-6r-fHs"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -386,10 +386,17 @@
                             <constraint firstItem="9ii-MA-3dI" firstAttribute="top" secondItem="a0y-ng-8d0" secondAttribute="bottom" constant="8" id="zgJ-uC-jJ6"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="8ta-um-6KK" id="Og0-Jn-u1v"/>
+                        <outlet property="infoRequireLabel" destination="DWg-Md-yQc" id="VDR-P6-UV4"/>
+                        <outlet property="nameField" destination="a0y-ng-8d0" id="anI-eo-Yj2"/>
+                        <outlet property="passwordConfirmField" destination="9ch-hI-VDP" id="zRB-5b-Nk4"/>
+                        <outlet property="passwordField" destination="s0l-Rq-jnI" id="EUi-zT-TdY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MEA-tE-jEX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="244" y="-32"/>
+            <point key="canvasLocation" x="189" y="-29"/>
         </scene>
         <!--Profile Controller-->
         <scene sceneID="6ux-VM-qpY">
