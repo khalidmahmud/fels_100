@@ -3,3 +3,5 @@ platform :ios, '8.0'
 
 pod 'AFNetworking', '~> 3.0'
 pod 'MBProgressHUD', '~> 0.9.2'
+pod 'SVPullToRefresh'
+pod 'CCBottomRefreshControl'

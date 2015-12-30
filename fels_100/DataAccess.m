@@ -57,4 +57,15 @@
     }
 }
 
+-(void )getCategories:(NSNumber*)page authenticationToken:(NSString*)authenticationToken complete:(void (^)(bool check ,NSDictionary* categoriesdict))completionBlock {
+    NSDictionary *param = @{ @"page":page,
+                             @"auth_token":authenticationToken};
+    [[self getManager] GET:@"categories.json" parameters:param progress:nil
+        success:^( NSURLSessionTask *task, id responseObject) {
+            completionBlock(YES, responseObject);
+        } failure:^(NSURLSessionTask *operation, NSError *error) {
+            completionBlock(NO ,@{});
+    }];
+}
+
 @end
