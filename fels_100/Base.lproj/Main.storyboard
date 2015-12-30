@@ -75,7 +75,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*email or password is incorrect" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZj-Px-12a">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZj-Px-12a">
                                 <rect key="frame" x="163" y="296" width="262" height="21"/>
                                 <animations/>
                                 <constraints>
@@ -107,11 +107,17 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginButton:" destination="pSd-7J-eev" eventType="touchUpInside" id="TT6-he-QoG"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bl9-Eg-h1e">
                                 <rect key="frame" x="163" y="254" width="24" height="25"/>
                                 <animations/>
                                 <state key="normal" title="Button" image="unchecked"/>
+                                <connections>
+                                    <action selector="rememberMeBox:" destination="pSd-7J-eev" eventType="touchUpInside" id="N2Z-7f-xNH"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOL-Er-DaT">
                                 <rect key="frame" x="188" y="257" width="112" height="20"/>
@@ -163,6 +169,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emailLoginField" destination="F4b-4e-crE" id="Z6S-dd-pC0"/>
+                        <outlet property="loginRequirementLabel" destination="qZj-Px-12a" id="IUk-OG-bTO"/>
+                        <outlet property="passwordLoginField" destination="UnP-HJ-iAF" id="mL3-tx-3Jf"/>
+                        <outlet property="remeberMeBox" destination="Bl9-Eg-h1e" id="fuJ-YM-AJV"/>
                         <segue destination="c0K-YQ-hCS" kind="show" identifier="ToProfile" id="WiK-Y8-KRI"/>
                     </connections>
                 </viewController>
@@ -415,6 +425,11 @@
                                 <animations/>
                                 <items>
                                     <navigationItem title="Profile" id="YaQ-Zo-DBU">
+                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="oQL-e4-N2n">
+                                            <connections>
+                                                <action selector="logoutButton:" destination="c0K-YQ-hCS" id="AoZ-U5-6py"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Update" id="5Mt-4V-3pt">
                                             <connections>
                                                 <segue destination="jzg-2t-XQY" kind="presentation" id="FQt-YX-DNX"/>

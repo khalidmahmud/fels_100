@@ -10,4 +10,9 @@
 
 @interface ProfileController : UIViewController
 
+@property (strong, nonatomic) NSString *theID;
+@property (strong, nonatomic) NSString *auth_token;
+
+- (IBAction)logoutButton:(id)sender;
+
 @end
