@@ -34,4 +34,14 @@
 }
 */
 
+#pragma mark - IBAction
+
+- (IBAction)logoutButton:(id)sender {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:NO forKey: @"data"];
+    [defaults setObject: @"" forKey: @"id"];
+    [defaults setObject: @"" forKey: @"token"];
+    [defaults synchronize];
+}
+
 @end

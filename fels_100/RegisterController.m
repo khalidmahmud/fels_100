@@ -83,6 +83,7 @@
     self.passwordField.text = @"";
     self.passwordConfirmField.text = @"";
     self.nameField.text = @"";
+    self.infoRequireLabel.text = @"";
 }
 
 - (void)showSuccessAlert:(NSString *)myMessage {
@@ -119,7 +120,7 @@
                       } else {
                           [self showSuccessAlert:@"Error"];
                       }
-                      self.infoRequireLabel.text=@"";
+                      [self clearTextFields];
                   }];
         }
     } else {
