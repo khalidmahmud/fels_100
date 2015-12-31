@@ -11,6 +11,7 @@
 		36084F901C2B9D4A00E728C5 /* result_TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36084F8A1C2B9D4A00E728C5 /* result_TableViewCell.xib */; };
 		36084F911C2B9D4A00E728C5 /* resultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36084F8C1C2B9D4A00E728C5 /* resultViewController.m */; };
 		36084F921C2B9D4A00E728C5 /* testViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36084F8E1C2B9D4A00E728C5 /* testViewController.m */; };
+		364CF9B71C33997C00D57E7B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364CF9B61C33997C00D57E7B /* QuartzCore.framework */; };
 		36BC0B751C28FFB5006F7FE4 /* categoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC0B741C28FFB5006F7FE4 /* categoriesViewController.m */; };
 		36BC0B7E1C290F7C006F7FE4 /* categoriesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC0B7C1C290F7C006F7FE4 /* categoriesTableViewCell.m */; };
 		36BC0B7F1C290F7C006F7FE4 /* categoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36BC0B7D1C290F7C006F7FE4 /* categoriesTableViewCell.xib */; };
@@ -57,6 +58,7 @@
 		36084F8C1C2B9D4A00E728C5 /* resultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = resultViewController.m; sourceTree = "<group>"; };
 		36084F8D1C2B9D4A00E728C5 /* testViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testViewController.h; sourceTree = "<group>"; };
 		36084F8E1C2B9D4A00E728C5 /* testViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testViewController.m; sourceTree = "<group>"; };
+		364CF9B61C33997C00D57E7B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		36BC0B731C28FFB5006F7FE4 /* categoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = categoriesViewController.h; sourceTree = "<group>"; };
 		36BC0B741C28FFB5006F7FE4 /* categoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = categoriesViewController.m; sourceTree = "<group>"; };
 		36BC0B7B1C290F7C006F7FE4 /* categoriesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = categoriesTableViewCell.h; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				364CF9B71C33997C00D57E7B /* QuartzCore.framework in Frameworks */,
 				51E6DDFFCAB59E830AA4015D /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,6 +242,7 @@
 		898586A0560A800B3ADD361F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				364CF9B61C33997C00D57E7B /* QuartzCore.framework */,
 				C7B8496B355CC9C66AA4B0B6 /* libPods.a */,
 			);
 			name = Frameworks;
