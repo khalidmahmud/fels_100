@@ -57,7 +57,7 @@
     }
 }
 
--(void )getCategories:(NSNumber*)page authenticationToken:(NSString*)authenticationToken complete:(void (^)(bool check ,NSDictionary* categoriesdict))completionBlock {
+- (void )getCategories:(NSNumber*)page authenticationToken:(NSString*)authenticationToken complete:(void (^)(bool check ,NSDictionary* categoriesdict))completionBlock {
     NSDictionary *param = @{ @"page":page,
                              @"auth_token":authenticationToken};
     [[self getManager] GET:@"categories.json" parameters:param progress:nil
@@ -67,5 +67,31 @@
             completionBlock(NO ,@{});
     }];
 }
+
+- (void)fetchData:(NSString *)theID Token:(NSString *)authToken complete:(void(^)(BOOL check,BOOL hasImage,NSDictionary *dictionary))completionBlock {
+    if (theID && authToken) {
+        NSString *path = [NSString stringWithFormat: @"users/%@.json",theID];
+        [[self getManager] GET:path parameters:@{@"auth_token":authToken} progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+            NSDictionary *theDictionary = [(NSDictionary *)responseObject objectForKey:@"user"];
+            if (theDictionary && [theDictionary objectForKey:@"name"] && [theDictionary objectForKey:@"email"] && [theDictionary objectForKey:@"avatar"] && [theDictionary objectForKey:@"activities"] && [theDictionary objectForKey:@"learned_words"]) {
+                NSDictionary *temporaryDictionary = @{@"name":[theDictionary objectForKey: @"name"],
+                                                      @"email":[theDictionary objectForKey:@"email"],
+                                                      @"avatar":[theDictionary objectForKey: @"avatar"],
+                                                      @"learned_words":[theDictionary objectForKey: @"learned_words"],
+                                                      @"activities":[theDictionary objectForKey: @"activities"]};
+                ([[theDictionary objectForKey: @"avatar"] isEqualToString: @""]) ? completionBlock(YES,NO,temporaryDictionary) : completionBlock(YES,YES,temporaryDictionary);
+            } else {
+                completionBlock(NO,NO,@{});
+            }
+        } failure:^(NSURLSessionTask *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+            completionBlock(NO,NO,@{});
+        }];
+    } else {
+        completionBlock(NO,NO,@{});
+    }
+}
+
+
 
 @end

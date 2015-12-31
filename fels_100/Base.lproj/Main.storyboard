@@ -432,7 +432,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Update" id="5Mt-4V-3pt">
                                             <connections>
-                                                <segue destination="jzg-2t-XQY" kind="presentation" id="FQt-YX-DNX"/>
+                                                <segue destination="jzg-2t-XQY" kind="presentation" identifier="ToUpdate" id="FQt-YX-DNX"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -450,6 +450,10 @@
                                 <rect key="frame" x="0.0" y="170" width="600" height="315"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="c0K-YQ-hCS" id="2Fm-mh-vYJ"/>
+                                    <outlet property="delegate" destination="c0K-YQ-hCS" id="icR-eT-gwF"/>
+                                </connections>
                             </tableView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userIcon" translatesAutoresizingMaskIntoConstraints="NO" id="YPa-fx-udU">
                                 <rect key="frame" x="114" y="59" width="24" height="24"/>
@@ -478,7 +482,7 @@
                                     <constraint firstAttribute="width" constant="24" id="OYk-dU-AkQ"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock" translatesAutoresizingMaskIntoConstraints="NO" id="NUP-4N-Skk">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info" translatesAutoresizingMaskIntoConstraints="NO" id="NUP-4N-Skk">
                                 <rect key="frame" x="114" y="129" width="24" height="24"/>
                                 <animations/>
                                 <constraints>
@@ -553,6 +557,13 @@
                             <constraint firstItem="YPa-fx-udU" firstAttribute="top" secondItem="Awz-eZ-7ZG" secondAttribute="bottom" constant="15" id="zFw-eN-Kf2"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="learnedWords" destination="fGn-tT-Rn6" id="i1M-aN-RKq"/>
+                        <outlet property="profileEmail" destination="KJZ-yd-nO1" id="TlH-xC-IzC"/>
+                        <outlet property="profileName" destination="iu4-HA-kn4" id="Shi-Zq-IFM"/>
+                        <outlet property="profilePicture" destination="wT2-gP-j1h" id="pW4-jf-VyO"/>
+                        <outlet property="tableView" destination="4jN-Nq-vc1" id="7gp-MO-9Lm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Au-kj-uHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
