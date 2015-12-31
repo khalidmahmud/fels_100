@@ -14,5 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnThiredOption;
 @property (weak, nonatomic) IBOutlet UIButton *btnForthOption;
 @property (weak, nonatomic) IBOutlet NSString *categoryType;
-
+@property (weak, nonatomic) IBOutlet NSString *categoryTypeName;
+@property(strong, nonatomic)  NSString *authenticationToken;
+@property (weak, nonatomic) IBOutlet UINavigationBar *lessonNavigationBar;
 @end

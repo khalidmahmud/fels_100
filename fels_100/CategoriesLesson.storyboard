@@ -226,6 +226,7 @@
                         <outlet property="btnForthOption" destination="dae-Bk-k8X" id="fOx-Xm-uLU"/>
                         <outlet property="btnSecondOption" destination="3Zg-e8-ZZt" id="qAS-lK-oeH"/>
                         <outlet property="btnThiredOption" destination="9QI-O5-CJ6" id="7Ye-Ab-QVD"/>
+                        <outlet property="lessonNavigationBar" destination="h0b-RV-7wJ" id="po0-AC-n9v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R7d-fy-43c" userLabel="First Responder" sceneMemberID="firstResponder"/>

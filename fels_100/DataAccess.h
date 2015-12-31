@@ -17,4 +17,6 @@
 - (void)signIn:(NSString *)email password:(NSString *)password remember:(NSNumber *)rememberMe complete:(void(^)(BOOL isLogged,NSDictionary *theDic))completionBlock;
 - (void )getCategories:(NSNumber*)page authenticationToken:(NSString*)authenticationToken complete:(void (^)(BOOL check ,NSDictionary* categoriesDictionary))completionBlock;
 - (void)fetchData:(NSString *)theID Token:(NSString *)authToken complete:(void(^)(BOOL check,BOOL hasImage,NSDictionary *dictionary))completionBlock;
+- (void )getCategorieTypeWiseLesson:(NSString *) CategoryTypeId authenticationToken:(NSString*)authenticationToken complete:(void (^)(bool check ,NSDictionary* lessonDictionary))completionBlock;
+
 @end

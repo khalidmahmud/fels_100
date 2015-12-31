@@ -11,7 +11,7 @@
 @interface categoriesViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UITableView *categoriesTableView;
 @property NSDictionary * dictionary;
-@property(strong, nonatomic)  NSNumber *totalPage;
+@property int totalPage;
 @property(strong, nonatomic)  NSNumber *currentPage;
 @property(strong, nonatomic)  NSString *authenticationToken;
 @end
