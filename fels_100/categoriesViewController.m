@@ -26,7 +26,7 @@ UIRefreshControl * refreshController;
     [super viewDidLoad];
     //self.authenticationToken=@"nCVjGJZZQDx-uvenYiwQ0w";
     self.currentPage = @1;
-    self.totalPage = @-1;
+    self.totalPage = 0;
     [self.categoriesTableView registerNib:[UINib nibWithNibName:NSStringFromClass([categoriesTableViewCell class] ) bundle:nil] forCellReuseIdentifier:NSStringFromClass([categoriesTableViewCell class])];
     [self loadCategories];
     refreshController = [[UIRefreshControl alloc]init];
@@ -45,21 +45,21 @@ UIRefreshControl * refreshController;
     DataAccess *access = [[DataAccess alloc]init];
     [access getCategories:self.currentPage
             authenticationToken:self.authenticationToken
-            complete:^(BOOL check ,NSDictionary* categoriesDictionary){
+            complete:^(BOOL check ,NSDictionary* categoriesDictionary) {
                 if(check) {
                     categoriesName = [categoriesDictionary objectForKey:@"categories"];
-                    if([self.totalPage isEqual:@-1]){
-                        self.totalPage = [categoriesDictionary objectForKey:@"total_pages"];
+                    if (self.totalPage == 0) {
+                        self.totalPage = [[categoriesDictionary objectForKey:@"total_pages"] integerValue];
+                        int k = [self.currentPage integerValue];
+                        k = (k+1)% self.totalPage;
+                        if(k == 0) {
+                            k = self.totalPage;
+                        }
+                        self.currentPage = [NSNumber numberWithInt:k];
                     }
                     [self.categoriesTableView reloadData];
                 }
     }];
-    int k = [self.currentPage integerValue];
-    k = (k+1)%[self.totalPage integerValue];
-    if(k == 0) {
-        k = [self.totalPage integerValue];
-    }
-    self.currentPage = [NSNumber numberWithInt:k];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,5 +88,17 @@ UIRefreshControl * refreshController;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self performSegueWithIdentifier:@"categories" sender:self];
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"categories"]) {
+        NSIndexPath *indexPath = [self.categoriesTableView indexPathForSelectedRow];
+        testViewController *testViewController = segue.destinationViewController;
+        NSDictionary *theDic=[categoriesName objectAtIndex: indexPath.row ];
+        testViewController.categoryType = [ theDic objectForKey:@"id"];
+        testViewController.categoryTypeName = [ theDic objectForKey:@"name"];
+       // NSLog(@"%@",[ theDic objectForKey:@"id"]);
+    }
+}
+
 
 @end

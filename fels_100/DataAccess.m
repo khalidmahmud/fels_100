@@ -64,7 +64,7 @@
         success:^( NSURLSessionTask *task, id responseObject) {
             completionBlock(YES, responseObject);
         } failure:^(NSURLSessionTask *operation, NSError *error) {
-            completionBlock(NO ,@{});
+            completionBlock(NO,@{});
     }];
 }
 
@@ -92,6 +92,18 @@
     }
 }
 
-
+-(void )getCategorieTypeWiseLesson:(NSString *) CategoryTypeId authenticationToken:(NSString*)authenticationToken complete:(void (^)(bool check ,NSDictionary* lessonDictionary))completionBlock {
+    if(authenticationToken != nil){
+        NSDictionary *param = @{ @"auth_token": authenticationToken};
+        NSString* url= [NSString stringWithFormat:@"categories/%@/lessons.json", CategoryTypeId];
+        [[self getManager] POST:url parameters:param progress:nil
+                        success:^( NSURLSessionTask *task, id responseObject) {
+                            //NSLog(@" %@", responseObject);
+                            completionBlock(YES,responseObject);
+                        } failure:^(NSURLSessionTask *operation, NSError *error) {
+                            completionBlock(NO,@{});
+        }];
+    }
+}
 
 @end
