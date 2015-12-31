@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProfileController : UIViewController
+@interface ProfileController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property (strong, nonatomic) NSString *theID;
 @property (strong, nonatomic) NSString *auth_token;
+@property (strong, nonatomic) NSString *pictureString;
+@property (strong, nonatomic) NSArray *activityArray;
+@property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
+@property (weak, nonatomic) IBOutlet UILabel *profileName;
+@property (weak, nonatomic) IBOutlet UILabel *profileEmail;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *learnedWords;
 
 - (IBAction)logoutButton:(id)sender;
 
