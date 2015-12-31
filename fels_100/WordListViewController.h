@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface WordListViewController : UIViewController < UITableViewDataSource, UITableViewDelegate >
 
 @property (strong, nonatomic) IBOutlet UIButton *filterButton1;
@@ -21,6 +22,16 @@
 
 @property (strong, nonatomic) NSArray *filterData1;
 @property (strong, nonatomic) NSArray *filterData2;
-@property (strong, nonatomic) NSArray *resultData;
+@property (strong, nonatomic) NSMutableArray *resultData;
+
+
+@property (strong, nonatomic) NSString *authenticationToken;
+
+@property (strong, nonatomic) NSNumber *wordsTotalPage;
+@property (strong, nonatomic) NSNumber *categoryId;//Filter 1
+@property (strong, nonatomic) NSString *optionsFilter;//Filter 2
+@property (strong, nonatomic) NSNumber *wordsCurrentPage;
+
+
 
 @end
