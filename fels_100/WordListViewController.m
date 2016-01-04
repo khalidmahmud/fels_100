@@ -18,9 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.filterData1 = [[NSMutableArray alloc]init];
-    self.filterData2 = [[NSArray alloc]init];
-    self.resultData = [[NSMutableArray alloc]init];
+    self.filterData1 = [[NSMutableArray alloc] init];
+    self.filterData2 = [[NSArray alloc] init];
+    self.resultData = [[NSMutableArray alloc] init];
     self.filterTable1.hidden = YES;
     self.filterTable2.hidden = YES;
     
@@ -29,7 +29,7 @@
     self.wordsCurrentPage = @1;
     self.categoriesCurrentPage = @1;
     
-    DataAccess *accessWord = [[DataAccess alloc]init];
+    DataAccess *accessWord = [[DataAccess alloc] init];
     //initial values
     [accessWord categoryId:self.categoryId
                     option:self.optionsFilter
@@ -38,27 +38,25 @@
                   complete: ^ (NSDictionary *wordsReturn) {
                       if (wordsReturn != nil) {
                           if ([wordsReturn objectForKey:@"words"] && [wordsReturn objectForKey:@"total_pages"]) {
-                              self.resultData = [[NSMutableArray alloc]initWithArray:[wordsReturn objectForKey:@"words"]];
+                              self.resultData = [[NSMutableArray alloc] initWithArray:[wordsReturn objectForKey:@"words"]];
                               self.wordsTotalPage = [[NSNumber alloc]initWithInt:[[wordsReturn objectForKey:@"total_pages"] intValue]];
                               [self.resultTable reloadData];
                           }
-                          
                       } else {
                           NSLog(@"///// Error Occured /////////////");
                       }
                   }];
-    DataAccess *accessCategories = [[DataAccess alloc]init];
+    DataAccess *accessCategories = [[DataAccess alloc] init];
     //initial values
     [accessCategories page:self.wordsCurrentPage
                  authToken:self.authenticationToken
                   complete: ^ (NSDictionary *categoriesReturn) {
                       if (categoriesReturn != nil) {
                           if ([categoriesReturn objectForKey:@"categories"] && [categoriesReturn objectForKey:@"total_pages"]) {
-                              self.filterData1 = [[NSMutableArray alloc]initWithArray:[categoriesReturn objectForKey:@"categories"]];
-                              self.categoriesTotalPage = [[NSNumber alloc]initWithInt:[[categoriesReturn objectForKey:@"total_pages"] intValue]];
+                              self.filterData1 = [[NSMutableArray alloc] initWithArray:[categoriesReturn objectForKey:@"categories"]];
+                              self.categoriesTotalPage = [[NSNumber alloc] initWithInt:[[categoriesReturn objectForKey:@"total_pages"] intValue]];
                               [self.filterTable1 reloadData];
                           }
-                          
                       } else {
                           NSLog(@"///// Error Occured /////////////");
                       }
@@ -102,8 +100,8 @@
     }
     
     if (tableView == self.filterTable1) {
-        if( [[self.filterData1 objectAtIndex:indexPath.row]objectForKey:@"name"] != nil) {
-        cell.textLabel.text = [[self.filterData1 objectAtIndex:indexPath.row]objectForKey:@"name"];
+        if( [[self.filterData1 objectAtIndex:indexPath.row] objectForKey:@"name"] != nil) {
+        cell.textLabel.text = [[self.filterData1 objectAtIndex:indexPath.row] objectForKey:@"name"];
         } else {
             NSLog(@" Error Occured in Categories....");
         }
@@ -112,9 +110,9 @@
     } else {
         if (self.resultData != nil) {
             NSArray *theDic = self.resultData;
-            NSArray *answerArray = [[theDic objectAtIndex:indexPath.row]objectForKey:@"answers"];
-            NSString *answerString = [[NSString alloc]init];
-            NSString *wordString = [[theDic objectAtIndex:indexPath.row]objectForKey:@"content"];
+            NSArray *answerArray = [[theDic objectAtIndex:indexPath.row] objectForKey:@"answers"];
+            NSString *answerString = [[NSString alloc] init];
+            NSString *wordString = [[theDic objectAtIndex:indexPath.row] objectForKey:@"content"];
             for (NSDictionary *currentValue in answerArray)
             {
                 if ([[currentValue objectForKey:@"is_correct"]  isEqual: @1]) {
@@ -136,8 +134,30 @@
     
     if (tableView == self.filterTable1) {
         UITableViewCell *cell = [self.filterTable1 cellForRowAtIndexPath:indexPath];
+        NSNumber *currentCategoryId = self.categoryId;
+        self.categoryId = [[self.filterData1 objectAtIndex:indexPath.row] objectForKey:@"id"];
         [self.filterButton1 setTitle:cell.textLabel.text forState:UIControlStateNormal];
         self.filterTable1.hidden = YES;
+        if (currentCategoryId != self.categoryId) {
+            DataAccess *accessWord2 = [[DataAccess alloc] init];
+            //initial values
+            [accessWord2 categoryId:self.categoryId
+                             option:self.optionsFilter
+                               page:self.wordsCurrentPage
+                          authToken:self.authenticationToken
+                           complete: ^ (NSDictionary *wordsReturn) {
+                               if (wordsReturn != nil) {
+                                   if ([wordsReturn objectForKey:@"words"] && [wordsReturn objectForKey:@"total_pages"]) {
+                                       self.resultData = [[NSMutableArray alloc] initWithArray:[wordsReturn objectForKey:@"words"]];
+                                       self.wordsTotalPage = [[NSNumber alloc] initWithInt:[[wordsReturn objectForKey:@"total_pages"] intValue]];
+                                       [self.resultTable reloadData];
+                                   }
+                               } else {
+                                   NSLog(@"///// Error Occured /////////////");
+                               }
+                           }];
+            
+        }
         if ((self.filterTable1.hidden == YES) && (self.filterTable2.hidden == YES)) {
             self.resultTable.hidden = NO;
         }
@@ -233,7 +253,6 @@
         }
         
     }
-
 }
 
 @end
