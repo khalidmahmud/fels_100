@@ -68,6 +68,7 @@
     }];
 }
 
+
 - (void)fetchData:(NSString *)theID Token:(NSString *)authToken complete:(void(^)(BOOL check,BOOL hasImage,NSDictionary *dictionary))completionBlock {
     if (theID && authToken) {
         NSString *path = [NSString stringWithFormat: @"users/%@.json",theID];
@@ -103,7 +104,26 @@
                         } failure:^(NSURLSessionTask *operation, NSError *error) {
                             completionBlock(NO,@{});
         }];
+      }
     }
-}
+    
+- (void)categoryId:(NSNumber *)categoryId option:(NSString *)option page:(NSNumber *)page authToken:(NSString *)authToken complete:(void(^)(NSDictionary *wordsReturn))completionBlock {
+        if (categoryId && option && page && authToken) {
+            NSDictionary *param = @{ @"category_id": categoryId,
+                                     @"option": option,
+                                     @"page": page,
+                                     @"auth_token": authToken };
+            
+            [[self getManager] GET:@"words.json" parameters:param progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+                completionBlock(responseObject);
+            } failure:^(NSURLSessionTask *operation, NSError *error) {
+                NSLog(@"Error:%@", error);
+                completionBlock(@{});
+            }];
+        }
+        
+    }
 
 @end
+
+

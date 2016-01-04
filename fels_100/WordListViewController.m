@@ -7,6 +7,7 @@
 //
 
 #import "WordListViewController.h"
+#import "DataAccess.h"
 
 @interface WordListViewController ()
 
@@ -19,9 +20,33 @@
     // Do any additional setup after loading the view.
     self.filterData1 = [[NSArray alloc]init];
     self.filterData2 = [[NSArray alloc]init];
-    self.resultData = [[NSArray alloc]init];
+    self.resultData = [[NSMutableArray alloc]init];
     self.filterTable1.hidden = YES;
     self.filterTable2.hidden = YES;
+    
+//    self.authenticationToken = @"nCVjGJZZQDx-uvenYiwQ0w";
+//    self.categoryId = @1;
+//    self.optionsFilter = @"all_word";
+//    self.wordsCurrentPage = @1;
+
+    DataAccess *accessWord = [[DataAccess alloc]init];
+    //initial values
+    [accessWord categoryId:self.categoryId
+                    option:self.optionsFilter
+                      page:self.wordsCurrentPage
+                 authToken:self.authenticationToken
+                  complete: ^ (NSDictionary *wordsReturn) {
+                      if (wordsReturn != nil) {
+                          if ([wordsReturn objectForKey:@"words"] && [wordsReturn objectForKey:@"total_pages"]) {
+                              self.resultData = [[NSMutableArray alloc]initWithArray:[wordsReturn objectForKey:@"words"]];
+                              self.wordsTotalPage = [[NSNumber alloc]initWithInt:[[wordsReturn objectForKey:@"total_pages"] intValue]];
+                              [self.resultTable reloadData];
+                          }
+                          
+                      } else {
+                          NSLog(@"///// Error Occured /////////////");
+                      }
+                  }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,7 +90,18 @@
     } else if (tableView == self.filterTable2) {
     cell.textLabel.text = [self.filterData2 objectAtIndex:indexPath.row];
     } else {
-        cell.textLabel.text = [self.resultData objectAtIndex:indexPath.row];
+        NSArray *theDic = self.resultData;
+        NSArray *answerArray = [[theDic objectAtIndex:indexPath.row]objectForKey:@"answers"];
+        NSString *answerString = [[NSString alloc]init];
+        NSString *wordString = [[theDic objectAtIndex:indexPath.row]objectForKey:@"content"];
+        for (NSDictionary *currentValue in answerArray)
+        {
+            if ([[currentValue objectForKey:@"is_correct"]  isEqual: @1]) {
+                answerString = [currentValue objectForKey:@"content"];
+                break;
+            }
+        }
+        cell.textLabel.text = [NSString stringWithFormat:@"%@|||%@", wordString, answerString];
     }
     
     return cell;
@@ -115,4 +151,45 @@
         }
     }
 }
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (scrollView == self.resultTable) {
+        if(self.resultTable.contentOffset.y >= (self.resultTable.contentSize.height - self.resultTable.frame.size.height)) {
+            //user has scrolled to the bottom
+            [self scrollingFinish:self.resultTable];
+        }
+    } else if (scrollView == self.filterTable1) {
+        if(self.filterTable1.contentOffset.y >= (self.filterTable1.contentSize.height - self.filterTable1.frame.size.height)) {
+            //user has scrolled to the bottom
+            [self scrollingFinish:self.filterTable1];
+        }
+        
+        
+    }
+}
+
+- (void)scrollingFinish:(UIScrollView *)scrollView {
+    if(scrollView == self.resultTable) {
+        if (self.wordsCurrentPage == self.wordsTotalPage) {
+            NSLog(@"Reached page Limit");
+        } else {
+            self.wordsCurrentPage = [NSNumber numberWithInt:[self.wordsCurrentPage intValue] + 1];
+            DataAccess *accessWord2 = [[DataAccess alloc]init];
+            [accessWord2 categoryId:self.categoryId
+                             option:self.optionsFilter
+                               page:self.wordsCurrentPage
+                          authToken:self.authenticationToken
+                           complete: ^ (NSDictionary *wordsReturn) {
+                               if (wordsReturn != nil) {
+                                  [self.resultData addObjectsFromArray:[wordsReturn objectForKey:@"words"]];
+                                   [self.resultTable reloadData];
+                               } else {
+                                   NSLog(@"///// Error Occured /////////////");
+                               }
+                           }];
+        }
+    }
+}
+
 @end

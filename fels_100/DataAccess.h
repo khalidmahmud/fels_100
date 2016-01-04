@@ -19,4 +19,7 @@
 - (void)fetchData:(NSString *)theID Token:(NSString *)authToken complete:(void(^)(BOOL check,BOOL hasImage,NSDictionary *dictionary))completionBlock;
 - (void )getCategorieTypeWiseLesson:(NSString *) CategoryTypeId authenticationToken:(NSString*)authenticationToken complete:(void (^)(bool check ,NSDictionary* lessonDictionary))completionBlock;
 
+- (void)categoryId:(NSNumber *)categoryId option:(NSString *)option page:(NSNumber *)page authToken:(NSString *)authToken complete:(void(^)(NSDictionary *wordsReturn))completionBlock;
+
+
 @end
