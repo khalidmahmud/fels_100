@@ -20,7 +20,7 @@
 - (IBAction)filterAction1:(id)sender;
 - (IBAction)filterAction2:(id)sender;
 
-@property (strong, nonatomic) NSArray *filterData1;
+@property (strong, nonatomic) NSMutableArray *filterData1;
 @property (strong, nonatomic) NSArray *filterData2;
 @property (strong, nonatomic) NSMutableArray *resultData;
 
@@ -32,6 +32,7 @@
 @property (strong, nonatomic) NSString *optionsFilter;//Filter 2
 @property (strong, nonatomic) NSNumber *wordsCurrentPage;
 
-
+@property (strong, nonatomic) NSNumber *categoriesTotalPage;
+@property (strong, nonatomic) NSNumber *categoriesCurrentPage;
 
 @end
