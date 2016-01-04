@@ -86,7 +86,7 @@
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="urQ-FQ-C9Y"/>
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="T1z-6Q-p1L">
                                             <connections>
-                                                <segue destination="Orv-Rd-Ce5" kind="show" id="VRu-mF-nzb"/>
+                                                <segue destination="Orv-Rd-Ce5" kind="show" identifier="results" id="VRu-mF-nzb"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -95,16 +95,6 @@
                                     <rect key="frame" x="0.0" y="20" width="374" height="44"/>
                                 </variation>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fnn-XG-FO2">
-                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="5" y="73" width="177" height="21"/>
-                                </variation>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mta-Ze-BcZ">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <animations/>
@@ -115,7 +105,7 @@
                                     <rect key="frame" x="190" y="73" width="14" height="21"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="500" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Onx-PY-dcw">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Onx-PY-dcw">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -129,47 +119,59 @@
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.20004790729999999" green="0.20214666989999999" blue="0.59262516359999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Option1">
+                                <state key="normal">
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="92" y="382" width="211" height="30"/>
                                 </variation>
+                                <connections>
+                                    <action selector="selectOptionAction:" destination="E9n-KL-lna" eventType="touchUpInside" id="evL-6g-q1P"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9QI-O5-CJ6">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.20004790729999999" green="0.20214666989999999" blue="0.59262516359999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Option1">
+                                <state key="normal">
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="91" y="331" width="211" height="30"/>
                                 </variation>
+                                <connections>
+                                    <action selector="selectOptionAction:" destination="E9n-KL-lna" eventType="touchUpInside" id="xYn-pF-DXg"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Zg-e8-ZZt">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.20004790729999999" green="0.20214666989999999" blue="0.59262516359999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Option1">
+                                <state key="normal">
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="91" y="277" width="211" height="30"/>
                                 </variation>
+                                <connections>
+                                    <action selector="selectOptionAction:" destination="E9n-KL-lna" eventType="touchUpInside" id="k05-db-ihT"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z66-9b-u72">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.20004790729999999" green="0.20214666989999999" blue="0.59262516359999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Option1">
+                                <state key="normal">
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="91" y="226" width="211" height="30"/>
                                 </variation>
+                                <connections>
+                                    <action selector="selectOptionAction:" destination="E9n-KL-lna" eventType="touchUpInside" id="uvM-xZ-Yjp"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="こんにちは" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwU-8l-4kv">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwU-8l-4kv">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -189,13 +191,22 @@
                                     <rect key="frame" x="278" y="130" width="46" height="38"/>
                                 </variation>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fnn-XG-FO2">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="5" y="73" width="177" height="21"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="h0b-RV-7wJ"/>
-                                <exclude reference="Fnn-XG-FO2"/>
                                 <exclude reference="Mta-Ze-BcZ"/>
                                 <exclude reference="Onx-PY-dcw"/>
                                 <exclude reference="dae-Bk-k8X"/>
@@ -204,12 +215,12 @@
                                 <exclude reference="z66-9b-u72"/>
                                 <exclude reference="zwU-8l-4kv"/>
                                 <exclude reference="7lx-SV-nLD"/>
+                                <exclude reference="Fnn-XG-FO2"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="h0b-RV-7wJ"/>
-                                <include reference="Fnn-XG-FO2"/>
                                 <include reference="Mta-Ze-BcZ"/>
                                 <include reference="Onx-PY-dcw"/>
                                 <include reference="dae-Bk-k8X"/>
@@ -218,6 +229,7 @@
                                 <include reference="z66-9b-u72"/>
                                 <include reference="zwU-8l-4kv"/>
                                 <include reference="7lx-SV-nLD"/>
+                                <include reference="Fnn-XG-FO2"/>
                             </mask>
                         </variation>
                     </view>
@@ -227,6 +239,9 @@
                         <outlet property="btnSecondOption" destination="3Zg-e8-ZZt" id="qAS-lK-oeH"/>
                         <outlet property="btnThiredOption" destination="9QI-O5-CJ6" id="7Ye-Ab-QVD"/>
                         <outlet property="lessonNavigationBar" destination="h0b-RV-7wJ" id="po0-AC-n9v"/>
+                        <outlet property="numberOfQuestion" destination="Fnn-XG-FO2" id="hs6-d5-I0a"/>
+                        <outlet property="questionContent" destination="zwU-8l-4kv" id="Pmx-cR-NbK"/>
+                        <outlet property="totalNumberOfQuestion" destination="Onx-PY-dcw" id="4sc-Kq-c6b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R7d-fy-43c" userLabel="First Responder" sceneMemberID="firstResponder"/>

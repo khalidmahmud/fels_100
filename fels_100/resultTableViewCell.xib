@@ -7,41 +7,41 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="82" id="BOz-25-Blz" customClass="result_TableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="56" id="BOz-25-Blz" customClass="resultTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BOz-25-Blz" id="OX7-Ef-UY7">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="81"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="check_sign_icon_light_green" translatesAutoresizingMaskIntoConstraints="NO" id="ZBr-bd-PtV">
-                        <rect key="frame" x="8" y="17" width="63" height="48"/>
-                        <animations/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fS3-J5-dbM">
-                        <rect key="frame" x="88" y="11" width="89" height="59"/>
+                        <rect key="frame" x="88" y="4" width="89" height="48"/>
                         <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqk-bF-AwM">
-                        <rect key="frame" x="185" y="11" width="101" height="48"/>
+                        <rect key="frame" x="185" y="4" width="127" height="51"/>
                         <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="check_sign_icon_light_green" translatesAutoresizingMaskIntoConstraints="NO" id="ZBr-bd-PtV">
+                        <rect key="frame" x="8" y="8" width="48" height="34"/>
+                        <animations/>
+                    </imageView>
                 </subviews>
                 <animations/>
             </tableViewCellContentView>
             <animations/>
             <connections>
-                <outlet property="ansLb" destination="oqk-bF-AwM" id="UMB-zx-YZp"/>
-                <outlet property="questionLb" destination="fS3-J5-dbM" id="g9H-kO-K9j"/>
-                <outlet property="resultImage" destination="ZBr-bd-PtV" id="uMy-z1-bQT"/>
+                <outlet property="ansLb" destination="oqk-bF-AwM" id="7CR-EP-HYZ"/>
+                <outlet property="questionLb" destination="fS3-J5-dbM" id="Dls-a3-UkJ"/>
+                <outlet property="resultImage" destination="ZBr-bd-PtV" id="dt5-q6-OY9"/>
             </connections>
-            <point key="canvasLocation" x="272" y="254"/>
+            <point key="canvasLocation" x="272" y="241"/>
         </tableViewCell>
     </objects>
     <resources>

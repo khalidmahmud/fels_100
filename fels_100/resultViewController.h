@@ -14,5 +14,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *numberLb;
 @property (weak, nonatomic) IBOutlet UILabel *totalLb;
 @property (weak, nonatomic) IBOutlet UITableView *resTblView;
+@property (weak, nonatomic) NSMutableArray *testResultDictionary;
+@property  int totalNumberOfQuestion;
+@property  int numberOfCorrectanswer;
+@property (weak, nonatomic) IBOutlet NSString *categoryTypeNameLeb;
 
 @end
