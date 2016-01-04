@@ -18,17 +18,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.filterData1 = [[NSArray alloc]init];
+    self.filterData1 = [[NSMutableArray alloc]init];
     self.filterData2 = [[NSArray alloc]init];
     self.resultData = [[NSMutableArray alloc]init];
     self.filterTable1.hidden = YES;
     self.filterTable2.hidden = YES;
     
-//    self.authenticationToken = @"nCVjGJZZQDx-uvenYiwQ0w";
-//    self.categoryId = @1;
-//    self.optionsFilter = @"all_word";
-//    self.wordsCurrentPage = @1;
-
+    self.categoryId = @1;
+    self.optionsFilter = @"all_word";
+    self.wordsCurrentPage = @1;
+    self.categoriesCurrentPage = @1;
+    
     DataAccess *accessWord = [[DataAccess alloc]init];
     //initial values
     [accessWord categoryId:self.categoryId
@@ -41,6 +41,22 @@
                               self.resultData = [[NSMutableArray alloc]initWithArray:[wordsReturn objectForKey:@"words"]];
                               self.wordsTotalPage = [[NSNumber alloc]initWithInt:[[wordsReturn objectForKey:@"total_pages"] intValue]];
                               [self.resultTable reloadData];
+                          }
+                          
+                      } else {
+                          NSLog(@"///// Error Occured /////////////");
+                      }
+                  }];
+    DataAccess *accessCategories = [[DataAccess alloc]init];
+    //initial values
+    [accessCategories page:self.wordsCurrentPage
+                 authToken:self.authenticationToken
+                  complete: ^ (NSDictionary *categoriesReturn) {
+                      if (categoriesReturn != nil) {
+                          if ([categoriesReturn objectForKey:@"categories"] && [categoriesReturn objectForKey:@"total_pages"]) {
+                              self.filterData1 = [[NSMutableArray alloc]initWithArray:[categoriesReturn objectForKey:@"categories"]];
+                              self.categoriesTotalPage = [[NSNumber alloc]initWithInt:[[categoriesReturn objectForKey:@"total_pages"] intValue]];
+                              [self.filterTable1 reloadData];
                           }
                           
                       } else {
@@ -86,22 +102,31 @@
     }
     
     if (tableView == self.filterTable1) {
-        cell.textLabel.text = [self.filterData1 objectAtIndex:indexPath.row];
+        if( [[self.filterData1 objectAtIndex:indexPath.row]objectForKey:@"name"] != nil) {
+        cell.textLabel.text = [[self.filterData1 objectAtIndex:indexPath.row]objectForKey:@"name"];
+        } else {
+            NSLog(@" Error Occured in Categories....");
+        }
     } else if (tableView == self.filterTable2) {
     cell.textLabel.text = [self.filterData2 objectAtIndex:indexPath.row];
     } else {
-        NSArray *theDic = self.resultData;
-        NSArray *answerArray = [[theDic objectAtIndex:indexPath.row]objectForKey:@"answers"];
-        NSString *answerString = [[NSString alloc]init];
-        NSString *wordString = [[theDic objectAtIndex:indexPath.row]objectForKey:@"content"];
-        for (NSDictionary *currentValue in answerArray)
-        {
-            if ([[currentValue objectForKey:@"is_correct"]  isEqual: @1]) {
-                answerString = [currentValue objectForKey:@"content"];
-                break;
+        if (self.resultData != nil) {
+            NSArray *theDic = self.resultData;
+            NSArray *answerArray = [[theDic objectAtIndex:indexPath.row]objectForKey:@"answers"];
+            NSString *answerString = [[NSString alloc]init];
+            NSString *wordString = [[theDic objectAtIndex:indexPath.row]objectForKey:@"content"];
+            for (NSDictionary *currentValue in answerArray)
+            {
+                if ([[currentValue objectForKey:@"is_correct"]  isEqual: @1]) {
+                    answerString = [currentValue objectForKey:@"content"];
+                    break;
+                }
             }
+            cell.textLabel.text = [NSString stringWithFormat:@"%@|||%@", wordString, answerString];
+        } else {
+            NSLog(@" Error Occured in Words....");
         }
-        cell.textLabel.text = [NSString stringWithFormat:@"%@|||%@", wordString, answerString];
+        
     }
     
     return cell;
@@ -189,7 +214,26 @@
                                }
                            }];
         }
+    } else if (scrollView == self.filterTable1) {
+        if (self.categoriesCurrentPage == self.categoriesTotalPage) {
+            NSLog(@"Reached page Limit of Categories");
+        } else {
+            self.categoriesCurrentPage = [NSNumber numberWithInt:[self.categoriesCurrentPage intValue] + 1];
+            DataAccess *accessCategories2 = [[DataAccess alloc]init];
+            [accessCategories2      page:self.categoriesCurrentPage
+                               authToken:self.authenticationToken
+                                complete: ^ (NSDictionary *categoriesReturn) {
+                                    if (categoriesReturn != nil) {
+                                        [self.filterData1 addObjectsFromArray:[categoriesReturn objectForKey:@"categories"]];
+                                        [self.filterTable1 reloadData];
+                                    } else {
+                                        NSLog(@"///// Error Occured /////////////");
+                                    }
+                                }];
+        }
+        
     }
+
 }
 
 @end

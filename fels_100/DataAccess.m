@@ -113,17 +113,31 @@
                                      @"option": option,
                                      @"page": page,
                                      @"auth_token": authToken };
-            
             [[self getManager] GET:@"words.json" parameters:param progress:nil success:^(NSURLSessionTask *task, id responseObject) {
                 completionBlock(responseObject);
             } failure:^(NSURLSessionTask *operation, NSError *error) {
                 NSLog(@"Error:%@", error);
-                completionBlock(@{});
+                completionBlock(nil);
             }];
+        } else {
+            completionBlock(nil);
         }
-        
     }
 
+- (void)page:(NSNumber *)page authToken:(NSString *)authToken complete:(void(^)(NSDictionary *categoriesReturn))completionBlock {
+    if (page && authToken) {
+        NSDictionary *param = @{ @"page": page,
+                                 @"auth_token": authToken };
+        [[self getManager] GET:@"categories.json" parameters:param progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+            completionBlock(responseObject);
+        } failure:^(NSURLSessionTask *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+            completionBlock(nil);
+        }];
+    } else {
+        completionBlock(nil);
+    }
+}
 @end
 
 

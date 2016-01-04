@@ -21,5 +21,7 @@
 
 - (void)categoryId:(NSNumber *)categoryId option:(NSString *)option page:(NSNumber *)page authToken:(NSString *)authToken complete:(void(^)(NSDictionary *wordsReturn))completionBlock;
 
+- (void)page:(NSNumber *)page authToken:(NSString *)authToken complete:(void(^)(NSDictionary *categoriesReturn))completionBlock;
+
 
 @end
