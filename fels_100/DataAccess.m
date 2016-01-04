@@ -69,7 +69,7 @@
 }
 
 
-- (void)fetchData:(NSString *)theID Token:(NSString *)authToken complete:(void(^)(BOOL check,BOOL hasImage,NSDictionary *dictionary))completionBlock {
+- (void)fetchData:(NSString *)theID Token:(NSString *)authToken complete:(void(^)(BOOL check,NSDictionary *dictionary))completionBlock {
     if (theID && authToken) {
         NSString *path = [NSString stringWithFormat: @"users/%@.json",theID];
         [[self getManager] GET:path parameters:@{@"auth_token":authToken} progress:nil success:^(NSURLSessionTask *task, id responseObject) {
@@ -80,16 +80,16 @@
                                                       @"avatar":[theDictionary objectForKey: @"avatar"],
                                                       @"learned_words":[theDictionary objectForKey: @"learned_words"],
                                                       @"activities":[theDictionary objectForKey: @"activities"]};
-                ([[theDictionary objectForKey: @"avatar"] isEqualToString: @""]) ? completionBlock(YES,NO,temporaryDictionary) : completionBlock(YES,YES,temporaryDictionary);
+                completionBlock(YES,temporaryDictionary);
             } else {
-                completionBlock(NO,NO,@{});
+                completionBlock(NO,@{});
             }
         } failure:^(NSURLSessionTask *operation, NSError *error) {
             NSLog(@"Error: %@", error);
-            completionBlock(NO,NO,@{});
+            completionBlock(NO,@{});
         }];
     } else {
-        completionBlock(NO,NO,@{});
+        completionBlock(NO,@{});
     }
 }
 

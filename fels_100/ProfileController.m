@@ -33,7 +33,7 @@
     [super viewWillAppear:animated];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     DataAccess *access = [[DataAccess alloc] init];
-    [access fetchData:self.theID Token:self.auth_token complete:^(BOOL isAccepted,BOOL hasimage,NSDictionary *theDic) {
+    [access fetchData:self.theID Token:self.auth_token complete:^(BOOL isAccepted,NSDictionary *theDic) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (isAccepted) {
             if (theDic) {
@@ -43,11 +43,7 @@
                 self.pictureString = ([theDic objectForKey: @"avatar"]) ? [theDic objectForKey: @"avatar"] : @"";
                 self.activityArray = ([theDic objectForKey: @"activities"]) ? [theDic objectForKey: @"activities"] : @"";
                 [self.tableView reloadData];
-                if (hasimage) {
-                    [self.profilePicture setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.pictureString]]]];
-                } else {
-                    [self.profilePicture setImage:[UIImage imageNamed: @"profilePic.png"]];
-                }
+                [self.profilePicture setImageWithURL:[NSURL URLWithString:self.pictureString] placeholderImage:[UIImage imageNamed:@"profilePic.png"]];
             } else {
                 NSLog(@"Dictionary is nil");
             }
@@ -64,7 +60,7 @@
         UpdateController *destination = segue.destinationViewController;
         destination.emailUpdate = self.profileEmail.text;
         destination.nameUpdate = self.profileName.text;
-        destination.imageStringUpdate = self.pictureString;
+        destination.theString =  self.pictureString;
         destination.tokenUpdate = self.auth_token;
     }
 }
