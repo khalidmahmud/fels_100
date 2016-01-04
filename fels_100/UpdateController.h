@@ -12,7 +12,7 @@
 
 @property (strong,nonatomic) NSString *emailUpdate;
 @property (strong,nonatomic) NSString *nameUpdate;
-@property (strong,nonatomic) NSString *imageStringUpdate;
+@property (strong,nonatomic) NSString *theString;
 @property (strong,nonatomic) NSString *tokenUpdate;
 
 @end
