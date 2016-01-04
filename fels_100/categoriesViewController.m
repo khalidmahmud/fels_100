@@ -24,7 +24,7 @@ UIRefreshControl * refreshController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //self.authenticationToken=@"nCVjGJZZQDx-uvenYiwQ0w";
+   // self.authenticationToken=@"nCVjGJZZQDx-uvenYiwQ0w";
     self.currentPage = @1;
     self.totalPage = 0;
     [self.categoriesTableView registerNib:[UINib nibWithNibName:NSStringFromClass([categoriesTableViewCell class] ) bundle:nil] forCellReuseIdentifier:NSStringFromClass([categoriesTableViewCell class])];
@@ -77,7 +77,7 @@ UIRefreshControl * refreshController;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     categoriesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([categoriesTableViewCell class]) forIndexPath:indexPath];
     NSDictionary *theDic = [categoriesName objectAtIndex: indexPath.row ];
-    cell.categoriesTypeLb.text = [theDic objectForKey:@"name"];
+    cell.categoriesTypeLb.text = ([theDic objectForKey:@"name"]?[theDic objectForKey:@"name"]:@"");
     return cell;
 }
 
@@ -99,6 +99,5 @@ UIRefreshControl * refreshController;
        // NSLog(@"%@",[ theDic objectForKey:@"id"]);
     }
 }
-
 
 @end

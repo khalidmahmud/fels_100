@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface result_TableViewCell : UITableViewCell
+@interface resultTableViewCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UIImageView *resultImage;
 @property (weak, nonatomic) IBOutlet UILabel *questionLb;
 @property (weak, nonatomic) IBOutlet UILabel *ansLb;
-
 @end

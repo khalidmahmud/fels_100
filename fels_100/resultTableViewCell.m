@@ -6,9 +6,9 @@
 //  Copyright © 2015 Abu Khalid. All rights reserved.
 //
 
-#import "result_TableViewCell.h"
+#import "resultTableViewCell.h"
 
-@implementation result_TableViewCell
+@implementation resultTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code

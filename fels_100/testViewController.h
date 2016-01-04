@@ -17,4 +17,14 @@
 @property (weak, nonatomic) IBOutlet NSString *categoryTypeName;
 @property(strong, nonatomic)  NSString *authenticationToken;
 @property (weak, nonatomic) IBOutlet UINavigationBar *lessonNavigationBar;
+@property (strong, nonatomic) NSArray *arrayOfWords;
+@property int currentQuestionNumber;
+@property (strong, nonatomic) NSMutableArray *testRecordDictionary;
+@property (weak, nonatomic) IBOutlet UILabel *questionContent;
+@property (weak, nonatomic) IBOutlet UILabel *totalNumberOfQuestion;
+@property (weak, nonatomic) IBOutlet UILabel *numberOfQuestion;
+- (IBAction)selectOptionAction:(id)sender;
 @end
+
+
+
