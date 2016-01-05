@@ -83,7 +83,11 @@
                                 <animations/>
                                 <items>
                                     <navigationItem title="Basic Lession" id="QWW-wY-olh">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="urQ-FQ-C9Y"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="urQ-FQ-C9Y">
+                                            <connections>
+                                                <segue destination="JZy-eh-JBB" kind="show" id="62K-9T-n2h"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="T1z-6Q-p1L">
                                             <connections>
                                                 <segue destination="Orv-Rd-Ce5" kind="show" identifier="results" id="VRu-mF-nzb"/>
@@ -265,7 +269,11 @@
                                 <animations/>
                                 <items>
                                     <navigationItem title="Results" id="2GX-3P-WMm">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="coh-hb-7Xh"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="coh-hb-7Xh">
+                                            <connections>
+                                                <segue destination="JZy-eh-JBB" kind="show" id="wky-58-m8F"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                                 <variation key="widthClass=compact" fixedFrame="YES">
@@ -363,4 +371,7 @@
     <resources>
         <image name="arrow-right2-128" width="128" height="128"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="wky-58-m8F"/>
+    </inferredMetricsTieBreakers>
 </document>

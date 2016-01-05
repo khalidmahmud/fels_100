@@ -12,6 +12,7 @@
 #import "DataAccess.h"
 #import "UIScrollView+SVPullToRefresh.h"
 #import <CCBottomRefreshControl/UIScrollView+BottomRefreshControl.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 NSArray *categoriesName;
 UIRefreshControl * refreshController;
@@ -24,7 +25,7 @@ UIRefreshControl * refreshController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   // self.authenticationToken=@"nCVjGJZZQDx-uvenYiwQ0w";
+    //self.authenticationToken=@"nCVjGJZZQDx-uvenYiwQ0w";
     self.currentPage = @1;
     self.totalPage = 0;
     [self.categoriesTableView registerNib:[UINib nibWithNibName:NSStringFromClass([categoriesTableViewCell class] ) bundle:nil] forCellReuseIdentifier:NSStringFromClass([categoriesTableViewCell class])];
@@ -78,6 +79,9 @@ UIRefreshControl * refreshController;
     categoriesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([categoriesTableViewCell class]) forIndexPath:indexPath];
     NSDictionary *theDic = [categoriesName objectAtIndex: indexPath.row ];
     cell.categoriesTypeLb.text = ([theDic objectForKey:@"name"]?[theDic objectForKey:@"name"]:@"");
+    cell.lernedLb.text= [NSString stringWithFormat:@"%@",[theDic objectForKey:@"learned_words"]];
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[theDic objectForKey:@"photo"]]
+                      placeholderImage:[UIImage imageNamed:@"food.png"]];
     return cell;
 }
 
