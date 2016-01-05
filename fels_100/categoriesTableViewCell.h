@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *categoriesImage;
 @property (weak, nonatomic) IBOutlet UILabel *categoriesTypeLb;
 @property (weak, nonatomic) IBOutlet UILabel *categoriesDetailsLb;
+@property (weak, nonatomic) IBOutlet UILabel *lernedLb;
 
 @end
