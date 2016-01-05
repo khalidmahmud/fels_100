@@ -19,10 +19,9 @@
 - (void )getCategories:(NSNumber*)page authenticationToken:(NSString*)authenticationToken complete:(void (^)(BOOL check ,NSDictionary* categoriesDictionary))completionBlock;
 - (void)fetchData:(NSString *)theID Token:(NSString *)authToken complete:(void(^)(BOOL check,NSDictionary *dictionary))completionBlock;
 - (void )getCategorieTypeWiseLesson:(NSString *) CategoryTypeId authenticationToken:(NSString*)authenticationToken complete:(void (^)(bool check,NSDictionary* lessonDictionary))completionBlock;
-
 - (void)categoryId:(NSNumber *)categoryId option:(NSString *)option page:(NSNumber *)page authToken:(NSString *)authToken complete:(void(^)(NSDictionary *wordsReturn))completionBlock;
-
 - (void)page:(NSNumber *)page authToken:(NSString *)authToken complete:(void(^)(NSDictionary *categoriesReturn))completionBlock;
+- (void )updateLesson:(int)lessonId   result_id:(NSNumber *)resultId answer_id: (NSNumber *)answerId authenticationToken:(NSString*)authenticationToken complete:(void (^)(bool check ,NSDictionary* lessonDictionary ))completionBlock ;
 
 
 @end

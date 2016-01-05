@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UINavigationBar *lessonNavigationBar;
 @property (strong, nonatomic) NSArray *arrayOfWords;
 @property int currentQuestionNumber;
+@property int lessonId;
 @property (strong, nonatomic) NSMutableArray *testRecordDictionary;
 @property (weak, nonatomic) IBOutlet UILabel *questionContent;
 @property (weak, nonatomic) IBOutlet UILabel *totalNumberOfQuestion;
