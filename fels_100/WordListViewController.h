@@ -22,17 +22,18 @@
 
 @property (strong, nonatomic) NSMutableArray *filterData1;
 @property (strong, nonatomic) NSArray *filterData2;
+@property (strong, nonatomic) NSArray *filterData2Compare;
 @property (strong, nonatomic) NSMutableArray *resultData;
 
 
 @property (strong, nonatomic) NSString *authenticationToken;
 
-@property (strong, nonatomic) NSNumber *wordsTotalPage;
-@property (strong, nonatomic) NSNumber *categoryId;//Filter 1
+@property (assign, nonatomic) NSInteger wordsTotalPage;
+@property (assign, nonatomic) NSInteger categoryId;//Filter 1
 @property (strong, nonatomic) NSString *optionsFilter;//Filter 2
-@property (strong, nonatomic) NSNumber *wordsCurrentPage;
+@property (assign, nonatomic) NSInteger wordsCurrentPage;
 
-@property (strong, nonatomic) NSNumber *categoriesTotalPage;
-@property (strong, nonatomic) NSNumber *categoriesCurrentPage;
+@property (assign, nonatomic) NSInteger categoriesTotalPage;
+@property (assign, nonatomic) NSInteger categoriesCurrentPage;
 
 @end

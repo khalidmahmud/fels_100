@@ -19,27 +19,29 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.filterData1 = [[NSMutableArray alloc] init];
-    self.filterData2 = [[NSArray alloc] init];
+    self.filterData2 = [[NSArray alloc] initWithObjects:@"All",@"Learned",@"Not learn", nil];
+    self.filterData2Compare = [[NSArray alloc] initWithObjects:@"all_word",@"learned",@"no_learn", nil];
+    
     self.resultData = [[NSMutableArray alloc] init];
     self.filterTable1.hidden = YES;
     self.filterTable2.hidden = YES;
     
-    self.categoryId = @1;
+    self.categoryId = 1;
     self.optionsFilter = @"all_word";
-    self.wordsCurrentPage = @1;
-    self.categoriesCurrentPage = @1;
+    self.wordsCurrentPage = 1;
+    self.categoriesCurrentPage = 1;
     
     DataAccess *accessWord = [[DataAccess alloc] init];
     //initial values
-    [accessWord categoryId:self.categoryId
+    [accessWord categoryId:@(self.categoryId)
                     option:self.optionsFilter
-                      page:self.wordsCurrentPage
+                     page:@(self.wordsCurrentPage)
                  authToken:self.authenticationToken
                   complete: ^ (NSDictionary *wordsReturn) {
                       if (wordsReturn != nil) {
                           if ([wordsReturn objectForKey:@"words"] && [wordsReturn objectForKey:@"total_pages"]) {
-                              self.resultData = [[NSMutableArray alloc] initWithArray:[wordsReturn objectForKey:@"words"]];
-                              self.wordsTotalPage = [[NSNumber alloc]initWithInt:[[wordsReturn objectForKey:@"total_pages"] intValue]];
+                              [self.resultData addObjectsFromArray:[wordsReturn objectForKey:@"words"]];
+                              self.wordsTotalPage = [[wordsReturn objectForKey:@"total_pages"] integerValue];
                               [self.resultTable reloadData];
                           }
                       } else {
@@ -48,13 +50,13 @@
                   }];
     DataAccess *accessCategories = [[DataAccess alloc] init];
     //initial values
-    [accessCategories page:self.wordsCurrentPage
+    [accessCategories page:@(self.categoriesCurrentPage)
                  authToken:self.authenticationToken
                   complete: ^ (NSDictionary *categoriesReturn) {
                       if (categoriesReturn != nil) {
                           if ([categoriesReturn objectForKey:@"categories"] && [categoriesReturn objectForKey:@"total_pages"]) {
-                              self.filterData1 = [[NSMutableArray alloc] initWithArray:[categoriesReturn objectForKey:@"categories"]];
-                              self.categoriesTotalPage = [[NSNumber alloc] initWithInt:[[categoriesReturn objectForKey:@"total_pages"] intValue]];
+                              [self.filterData1 addObjectsFromArray:[categoriesReturn objectForKey:@"categories"]];
+                              self.categoriesTotalPage = [[categoriesReturn objectForKey:@"total_pages"] integerValue];
                               [self.filterTable1 reloadData];
                           }
                       } else {
@@ -134,22 +136,24 @@
     
     if (tableView == self.filterTable1) {
         UITableViewCell *cell = [self.filterTable1 cellForRowAtIndexPath:indexPath];
-        NSNumber *currentCategoryId = self.categoryId;
-        self.categoryId = [[self.filterData1 objectAtIndex:indexPath.row] objectForKey:@"id"];
+        NSInteger currentCategoryId = self.categoryId;
+        self.categoryId = [[[self.filterData1 objectAtIndex:indexPath.row] objectForKey:@"id"] integerValue];
         [self.filterButton1 setTitle:cell.textLabel.text forState:UIControlStateNormal];
         self.filterTable1.hidden = YES;
         if (currentCategoryId != self.categoryId) {
+            self.wordsCurrentPage = 1;
             DataAccess *accessWord2 = [[DataAccess alloc] init];
             //initial values
-            [accessWord2 categoryId:self.categoryId
+            [accessWord2 categoryId:@(self.categoryId)
                              option:self.optionsFilter
-                               page:self.wordsCurrentPage
+                               page:@(self.wordsCurrentPage)
                           authToken:self.authenticationToken
                            complete: ^ (NSDictionary *wordsReturn) {
                                if (wordsReturn != nil) {
                                    if ([wordsReturn objectForKey:@"words"] && [wordsReturn objectForKey:@"total_pages"]) {
-                                       self.resultData = [[NSMutableArray alloc] initWithArray:[wordsReturn objectForKey:@"words"]];
-                                       self.wordsTotalPage = [[NSNumber alloc] initWithInt:[[wordsReturn objectForKey:@"total_pages"] intValue]];
+                                       [self.resultData removeAllObjects];
+                                       [self.resultData addObjectsFromArray:[wordsReturn objectForKey:@"words"]];
+                                       self.wordsTotalPage = [[wordsReturn objectForKey:@"total_pages"] integerValue];
                                        [self.resultTable reloadData];
                                    }
                                } else {
@@ -163,8 +167,32 @@
         }
     } else if (tableView == self.filterTable2) {
         UITableViewCell *cell = [self.filterTable2 cellForRowAtIndexPath:indexPath];
+        NSString *currentSelectedOption = self.optionsFilter;
+        self.optionsFilter = [self.filterData2Compare objectAtIndex:indexPath.row];
         [self.filterButton2 setTitle:cell.textLabel.text forState:UIControlStateNormal];
         self.filterTable2.hidden = YES;
+        if (currentSelectedOption != self.optionsFilter) {
+            DataAccess *accessWord3 = [[DataAccess alloc]init];
+            self.wordsCurrentPage = 1;
+            [accessWord3 categoryId:@(self.categoryId)
+                             option:self.optionsFilter
+                               page:@(self.wordsCurrentPage)
+                          authToken:self.authenticationToken
+                           complete: ^ (NSDictionary *wordsReturn) {
+                               if (wordsReturn != nil) {
+                                   if ([wordsReturn objectForKey:@"words"] && [wordsReturn objectForKey:@"total_pages"]) {
+                                       [self.resultData removeAllObjects];
+                                       [self.resultData addObjectsFromArray:[wordsReturn objectForKey:@"words"]];
+                                       self.wordsTotalPage = [[wordsReturn objectForKey:@"total_pages"] integerValue];
+                                       [self.resultTable reloadData];
+                                   }
+                               } else {
+                                   NSLog(@"///// Error Occured /////////////");
+                                   [self.resultData removeAllObjects];
+                                   [self.resultTable reloadData];
+                               }
+                           }];
+        }
         if ((self.filterTable1.hidden == YES) && (self.filterTable2.hidden == YES)) {
             self.resultTable.hidden = NO;
         }
@@ -219,16 +247,16 @@
         if (self.wordsCurrentPage == self.wordsTotalPage) {
             NSLog(@"Reached page Limit");
         } else {
-            self.wordsCurrentPage = [NSNumber numberWithInt:[self.wordsCurrentPage intValue] + 1];
-            DataAccess *accessWord2 = [[DataAccess alloc]init];
-            [accessWord2 categoryId:self.categoryId
+            self.wordsCurrentPage = self.wordsCurrentPage + 1;
+            DataAccess *accessWord2 = [[DataAccess alloc] init];
+            [accessWord2 categoryId:@(self.categoryId)
                              option:self.optionsFilter
-                               page:self.wordsCurrentPage
+                                 page:@(self.wordsCurrentPage)
                           authToken:self.authenticationToken
                            complete: ^ (NSDictionary *wordsReturn) {
                                if (wordsReturn != nil) {
                                   [self.resultData addObjectsFromArray:[wordsReturn objectForKey:@"words"]];
-                                   [self.resultTable reloadData];
+                                  [self.resultTable reloadData];
                                } else {
                                    NSLog(@"///// Error Occured /////////////");
                                }
@@ -238,9 +266,9 @@
         if (self.categoriesCurrentPage == self.categoriesTotalPage) {
             NSLog(@"Reached page Limit of Categories");
         } else {
-            self.categoriesCurrentPage = [NSNumber numberWithInt:[self.categoriesCurrentPage intValue] + 1];
-            DataAccess *accessCategories2 = [[DataAccess alloc]init];
-            [accessCategories2      page:self.categoriesCurrentPage
+            self.categoriesCurrentPage = self.categoriesCurrentPage + 1;
+            DataAccess *accessCategories2 = [[DataAccess alloc] init];
+            [accessCategories2     page:@(self.categoriesCurrentPage)
                                authToken:self.authenticationToken
                                 complete: ^ (NSDictionary *categoriesReturn) {
                                     if (categoriesReturn != nil) {
@@ -251,7 +279,6 @@
                                     }
                                 }];
         }
-        
     }
 }
 
