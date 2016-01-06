@@ -14,6 +14,7 @@
     NSDictionary *lesson;
     NSDictionary *allWords;
     NSArray *newarray;
+    NSDictionary *checkAnswer;
 }
 
 @end
@@ -21,6 +22,7 @@
 @implementation testViewController
 @synthesize testRecordDictionary;
 @synthesize btnFirstOption;
+@synthesize lessonId;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,6 +45,7 @@
             complete:^(BOOL check ,NSDictionary* categoriesDictionary) {
                 if (check) {
                     lesson = [categoriesDictionary objectForKey:@"lesson"];
+                    self.lessonId = [[lesson objectForKey:@"id"] integerValue];
                     self.arrayOfWords= (NSArray *)[lesson objectForKey:@"words"];
                      self.totalNumberOfQuestion.text = [[NSNumber numberWithInteger:self.arrayOfWords.count] stringValue];
                      self.numberOfQuestion.text = [[NSNumber numberWithInteger:self.currentQuestionNumber] stringValue];
@@ -89,6 +92,19 @@
     [alertView show];
 }
 
+-(void)updateLesson:(NSNumber *)result_id answer_id:(NSNumber *)answer_id {
+    DataAccess *access = [[DataAccess alloc]init];
+    [access updateLesson :self.lessonId
+                result_id:result_id
+                answer_id:answer_id
+      authenticationToken: self.authenticationToken
+                 complete:^(BOOL check ,NSDictionary* categoriesDictionary) {
+                     if (check) {
+                         NSLog(@"LEsson Update!");
+                     }
+    }];
+}
+
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == [alertView cancelButtonIndex]){
@@ -96,26 +112,28 @@
     }
     else  {
         if(self.btnFirstOption.isSelected) {
-            NSDictionary *checkAnswer = [self getDataForStorage:0];
+            checkAnswer = [self getDataForStorage:0];
             [testRecordDictionary  addObject:checkAnswer];
             self.btnFirstOption.selected = false;
         }
         else if(self.btnSecondOption.isSelected) {
-            NSDictionary *checkAnswer = [self getDataForStorage:1];
+            checkAnswer = [self getDataForStorage:1];
             [testRecordDictionary  addObject:checkAnswer];
             self.btnSecondOption.selected = false;
         }
         else if(self.btnThiredOption.isSelected) {
-            NSDictionary *checkAnswer = [self getDataForStorage:2];
+            checkAnswer = [self getDataForStorage:2];
             [testRecordDictionary  addObject:checkAnswer];
             self.btnThiredOption.selected = false;
         }
         else{
-            NSDictionary *checkAnswer = [self getDataForStorage:3];
+            checkAnswer = [self getDataForStorage:3];
             [testRecordDictionary  addObject:checkAnswer];
             self.btnForthOption.selected = false;
         }
-        NSLog(@"testRecordDictionary %@",testRecordDictionary);
+        [self updateLesson:[checkAnswer objectForKey:@"id"]
+                 answer_id:[checkAnswer objectForKey:@"answer_id"]];
+        //NSLog(@"testRecordDictionary %@",testRecordDictionary);
         if(self.currentQuestionNumber+1 <= self.arrayOfWords.count ) {
             self.currentQuestionNumber += 1;
             self.numberOfQuestion.text = [[NSNumber numberWithInteger: self.currentQuestionNumber] stringValue];

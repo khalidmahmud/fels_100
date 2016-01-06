@@ -138,6 +138,29 @@
         completionBlock(nil);
     }
 }
+
+- (void )updateLesson:(int) lessonId   result_id:(NSNumber *)resultId answer_id: (NSNumber *)answerId authenticationToken:(NSString*)authenticationToken complete:(void (^)(bool check ,NSDictionary* lessonDictionary ))completionBlock {
+    if(authenticationToken != nil  && resultId != nil  && answerId != nil){
+        NSMutableDictionary *results_attributes = @{ @"id":resultId, @"answer_id":answerId};
+        NSMutableDictionary *parameter = [[NSMutableDictionary alloc]init];
+        [parameter setValue:@true forKey:@"learned"];
+        [parameter setValue:results_attributes forKey:@"results_attributes"];
+        [parameter setValue:authenticationToken forKey:@"auth_token"];
+        [parameter setValue:@true forKey:@"presence"];
+        NSString* url = [NSString stringWithFormat:@"lessons/%d.json", lessonId];
+       // NSLog(@"url  %@  %@", url,parameter);
+        [[self getManager] PATCH:url
+                      parameters:parameter
+                         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                             //NSLog(@"UpdateLesson  %@", responseObject);
+                             completionBlock(YES,responseObject);
+                         }failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                             //NSLog(@"UpdateLesson  fails");
+                             completionBlock(NO,@{});
+                         }];
+    }
+}
+
 @end
 
 
