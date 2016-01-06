@@ -43,7 +43,9 @@
                 self.pictureString = ([theDic objectForKey: @"avatar"]) ? [theDic objectForKey: @"avatar"] : @"";
                 self.activityArray = ([theDic objectForKey: @"activities"]) ? [theDic objectForKey: @"activities"] : @"";
                 [self.tableView reloadData];
-                [self.profilePicture setImageWithURL:[NSURL URLWithString:self.pictureString] placeholderImage:[UIImage imageNamed:@"profilePic.png"]];
+                [self.profilePicture sd_setImageWithURL:[NSURL URLWithString:self.pictureString]
+                                       placeholderImage:[UIImage imageNamed: @"profilePic.png"]
+                                                options:SDWebImageRefreshCached];
             } else {
                 NSLog(@"Dictionary is nil");
             }
@@ -62,6 +64,7 @@
         destination.nameUpdate = self.profileName.text;
         destination.theString =  self.pictureString;
         destination.tokenUpdate = self.auth_token;
+        destination.theID = self.theID;
     }
 }
 

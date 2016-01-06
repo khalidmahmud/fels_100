@@ -57,7 +57,7 @@
     }
 }
 
-- (void )getCategories:(NSNumber*)page authenticationToken:(NSString*)authenticationToken complete:(void (^)(bool check ,NSDictionary* categoriesdict))completionBlock {
+- (void)getCategories:(NSNumber*)page authenticationToken:(NSString*)authenticationToken complete:(void (^)(bool check ,NSDictionary* categoriesdict))completionBlock {
     NSDictionary *param = @{ @"page":page,
                              @"auth_token":authenticationToken};
     [[self getManager] GET:@"categories.json" parameters:param progress:nil
@@ -161,6 +161,24 @@
     }
 }
 
-@end
+- (void)updateData:(NSString *)theName email:(NSString *)theEmail password:(NSString *)theNewPassword retype:(NSString *)theRetype avatar:(NSString *)avatarString auth_token:(NSString *)theToken theID:(NSString *)theID complete:(void(^)(BOOL done))completionBlock {
+    if (theName && theNewPassword && theRetype && avatarString && theToken && theID && theEmail) {
+        NSString *path = [NSString stringWithFormat: @"users/%@.json",theID];
+        NSDictionary *param = @{@"user":@{@"name":theName,
+                                          @"email":theEmail,
+                                          @"password":theNewPassword,
+                                          @"password_confirmation":theRetype,
+                                          @"avatar":avatarString},
+                                @"auth_token":theToken};
+        [[self getManager] PATCH:path parameters:param success:^(NSURLSessionTask *task, id responseObject) {
+            completionBlock(YES);
+        } failure:^(NSURLSessionTask *operation, NSError *error) {
+            completionBlock(NO);
+        }];
+    } else {
+        completionBlock(NO);
+    }
+}
 
+@end
 
