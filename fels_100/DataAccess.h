@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
-#import "UIImageView+AFNetworking.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #define BASEURL @"https://manh-nt.herokuapp.com/";
 
@@ -21,7 +21,7 @@
 - (void )getCategorieTypeWiseLesson:(NSString *) CategoryTypeId authenticationToken:(NSString*)authenticationToken complete:(void (^)(bool check,NSDictionary* lessonDictionary))completionBlock;
 - (void)categoryId:(NSNumber *)categoryId option:(NSString *)option page:(NSNumber *)page authToken:(NSString *)authToken complete:(void(^)(NSDictionary *wordsReturn))completionBlock;
 - (void)page:(NSNumber *)page authToken:(NSString *)authToken complete:(void(^)(NSDictionary *categoriesReturn))completionBlock;
-- (void )updateLesson:(int)lessonId   result_id:(NSNumber *)resultId answer_id: (NSNumber *)answerId authenticationToken:(NSString*)authenticationToken complete:(void (^)(bool check ,NSDictionary* lessonDictionary ))completionBlock ;
-
+- (void)updateLesson:(int)lessonId   result_id:(NSNumber *)resultId answer_id: (NSNumber *)answerId authenticationToken:(NSString*)authenticationToken complete:(void (^)(bool check ,NSDictionary* lessonDictionary ))completionBlock ;
+- (void)updateData:(NSString *)theName email:(NSString *)theEmail password:(NSString *)theNewPassword retype:(NSString *)theRetype avatar:(NSString *)avatarString auth_token:(NSString *)theToken theID:(NSString *)theID complete:(void(^)(BOOL done))completionBlock;
 
 @end

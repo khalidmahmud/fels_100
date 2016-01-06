@@ -587,8 +587,16 @@
                                 <color key="barTintColor" red="0.41176470590000003" green="0.58823529409999997" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="Update Profile" id="Eco-ts-m6k">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vTe-Yk-GQj"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Update" id="gJb-50-Awm"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vTe-Yk-GQj">
+                                            <connections>
+                                                <action selector="dismissButton:" destination="jzg-2t-XQY" id="eWo-tG-XjA"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Update" id="gJb-50-Awm">
+                                            <connections>
+                                                <action selector="updateButton:" destination="jzg-2t-XQY" id="6ha-Ej-8Mc"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -632,7 +640,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1o8-YE-zQg">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1o8-YE-zQg">
                                 <rect key="frame" x="176" y="164" width="253" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -714,7 +722,7 @@
                                     <constraint firstAttribute="width" constant="168" id="BJb-7m-GOq"/>
                                     <constraint firstAttribute="height" constant="21" id="Sb3-47-4k5"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -810,6 +818,14 @@
                             <constraint firstItem="j61-Ut-ISy" firstAttribute="top" secondItem="RBW-cf-m2d" secondAttribute="bottom" constant="8" id="zPV-a0-Ror"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="newpasswordField" destination="MkR-EO-Ti0" id="MMm-j9-GQn"/>
+                        <outlet property="retypePasswordField" destination="uP1-lI-f8r" id="aJU-8H-88D"/>
+                        <outlet property="theImageView" destination="zyc-0u-Ov4" id="xwx-Q8-Ck8"/>
+                        <outlet property="updateEmailField" destination="RBW-cf-m2d" id="mNN-0Z-52q"/>
+                        <outlet property="updateNameField" destination="gRb-8Z-28G" id="jTt-80-hgj"/>
+                        <outlet property="updateRequirementLabel" destination="cbJ-dh-Plx" id="lF1-ji-vsk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U5k-1M-SAx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
