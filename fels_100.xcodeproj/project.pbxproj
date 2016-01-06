@@ -31,6 +31,7 @@
 		CFAB88CA1C2AA77B00886C9F /* UpdateController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFAB88C91C2AA77B00886C9F /* UpdateController.m */; };
 		CFAB88CD1C2AA8DB00886C9F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFAB88CC1C2AA8DB00886C9F /* LoginViewController.m */; };
 		CFABA0EF1C2A87D90041E6C2 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABA0EE1C2A87D90041E6C2 /* RegisterController.m */; };
+		CFB89DB41C3D096100CA8742 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB89DB31C3D096100CA8742 /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,8 @@
 		CFAB88CC1C2AA8DB00886C9F /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		CFABA0ED1C2A87D90041E6C2 /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterController.h; sourceTree = "<group>"; };
 		CFABA0EE1C2A87D90041E6C2 /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterController.m; sourceTree = "<group>"; };
+		CFB89DB21C3D096100CA8742 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = ../User.h; sourceTree = "<group>"; };
+		CFB89DB31C3D096100CA8742 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = ../User.m; sourceTree = "<group>"; };
 		DD4DE4A61C1A9E4DF6F3F6E0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -201,6 +204,8 @@
 				CFAB88C91C2AA77B00886C9F /* UpdateController.m */,
 				CFAB88CB1C2AA8DB00886C9F /* LoginViewController.h */,
 				CFAB88CC1C2AA8DB00886C9F /* LoginViewController.m */,
+				CFB89DB21C3D096100CA8742 /* User.h */,
+				CFB89DB31C3D096100CA8742 /* User.m */,
 			);
 			name = MainScreen;
 			sourceTree = "<group>";
@@ -455,6 +460,7 @@
 				36BC0B751C28FFB5006F7FE4 /* categoriesViewController.m in Sources */,
 				84B4F1B51C34FCDF00710503 /* WordListViewController.m in Sources */,
 				847D8EAF1C22A19E008E89F2 /* main.m in Sources */,
+				CFB89DB41C3D096100CA8742 /* User.m in Sources */,
 				36BC0B7E1C290F7C006F7FE4 /* categoriesTableViewCell.m in Sources */,
 				36084F8F1C2B9D4A00E728C5 /* resultTableViewCell.m in Sources */,
 				36084F911C2B9D4A00E728C5 /* resultViewController.m in Sources */,
