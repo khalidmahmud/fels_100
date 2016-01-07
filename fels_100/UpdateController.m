@@ -9,6 +9,7 @@
 #import "UpdateController.h"
 #import "DataAccess.h"
 #import "MBProgressHUD.h"
+#import "User.h"
 
 @interface UpdateController ()
 
@@ -167,8 +168,8 @@
                          password:self.newpasswordField.text
                            retype:self.retypePasswordField.text
                            avatar:the64String
-                       auth_token:self.tokenUpdate
-                            theID:self.theID
+                       auth_token:[User sharedInstance].theToken
+                            theID:[User sharedInstance].theId
                          complete:^(BOOL done){
                               [MBProgressHUD hideHUDForView:self.view animated:YES];
                               if (done) {
