@@ -19,6 +19,7 @@
 
 - (IBAction)filterAction1:(id)sender;
 - (IBAction)filterAction2:(id)sender;
+- (IBAction)backToProfile:(id)sender;
 
 @property (strong, nonatomic) NSMutableArray *filterData1;
 @property (strong, nonatomic) NSArray *filterData2;
