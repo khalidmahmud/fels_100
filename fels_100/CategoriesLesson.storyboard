@@ -22,7 +22,11 @@
                                 <animations/>
                                 <items>
                                     <navigationItem title="Categories" id="UTZ-gX-gmW">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="CfZ-53-FfC"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="CfZ-53-FfC">
+                                            <connections>
+                                                <action selector="btnBackAction:" destination="JZy-eh-JBB" id="xtT-vF-6jh"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                                 <variation key="widthClass=compact" fixedFrame="YES">
@@ -85,7 +89,7 @@
                                     <navigationItem title="Basic Lession" id="QWW-wY-olh">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="urQ-FQ-C9Y">
                                             <connections>
-                                                <segue destination="JZy-eh-JBB" kind="show" id="62K-9T-n2h"/>
+                                                <action selector="btnBackAction:" destination="E9n-KL-lna" id="XrU-9H-xuf"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="T1z-6Q-p1L">
@@ -194,6 +198,9 @@
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="278" y="130" width="46" height="38"/>
                                 </variation>
+                                <connections>
+                                    <action selector="btnSpechAction:" destination="E9n-KL-lna" eventType="touchUpInside" id="gj8-oQ-k4b"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fnn-XG-FO2">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -271,7 +278,7 @@
                                     <navigationItem title="Results" id="2GX-3P-WMm">
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="coh-hb-7Xh">
                                             <connections>
-                                                <segue destination="JZy-eh-JBB" kind="show" id="wky-58-m8F"/>
+                                                <action selector="btnDoneAction:" destination="Orv-Rd-Ce5" id="hzm-3T-aZU"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -371,7 +378,4 @@
     <resources>
         <image name="arrow-right2-128" width="128" height="128"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="wky-58-m8F"/>
-    </inferredMetricsTieBreakers>
 </document>

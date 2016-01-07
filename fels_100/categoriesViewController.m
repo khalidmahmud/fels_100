@@ -13,11 +13,13 @@
 #import "UIScrollView+SVPullToRefresh.h"
 #import <CCBottomRefreshControl/UIScrollView+BottomRefreshControl.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "User.h"
+#import "ProfileController.h"
 
-NSArray *categoriesName;
-UIRefreshControl * refreshController;
-
-@interface categoriesViewController ()
+@interface categoriesViewController () {
+    NSArray *categoriesName;
+    UIRefreshControl * refreshController;
+}
 
 @end
 
@@ -25,15 +27,13 @@ UIRefreshControl * refreshController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //self.authenticationToken=@"nCVjGJZZQDx-uvenYiwQ0w";
+    self.authenticationToken = [User sharedInstance].theToken;
     self.currentPage = @1;
     self.totalPage = 0;
     [self.categoriesTableView registerNib:[UINib nibWithNibName:NSStringFromClass([categoriesTableViewCell class] ) bundle:nil] forCellReuseIdentifier:NSStringFromClass([categoriesTableViewCell class])];
     [self loadCategories];
     refreshController = [[UIRefreshControl alloc]init];
     [refreshController addTarget:self action: @selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
-    //[self.categoriesTableView addSubview:refreshController];
-    //[self.categoriesTableView sendSubviewToBack:refreshController];
     self.categoriesTableView.bottomRefreshControl=refreshController;
 }
 
@@ -97,10 +97,18 @@ UIRefreshControl * refreshController;
     if ([segue.identifier isEqualToString:@"categories"]) {
         NSIndexPath *indexPath = [self.categoriesTableView indexPathForSelectedRow];
         testViewController *testViewController = segue.destinationViewController;
-        NSDictionary *theDic=[categoriesName objectAtIndex: indexPath.row ];
+        NSDictionary *theDic = [categoriesName objectAtIndex: indexPath.row ];
         testViewController.categoryType = [ theDic objectForKey:@"id"];
         testViewController.categoryTypeName = [ theDic objectForKey:@"name"];
-       // NSLog(@"%@",[ theDic objectForKey:@"id"]);
+    }
+}
+
+- (IBAction)btnBackAction:(id)sender {
+        for (UIViewController* controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[ProfileController class]]) {
+            [self.navigationController popToViewController:controller animated:YES];
+            return;
+        }
     }
 }
 

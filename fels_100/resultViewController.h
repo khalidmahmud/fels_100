@@ -18,5 +18,6 @@
 @property  int totalNumberOfQuestion;
 @property  int numberOfCorrectanswer;
 @property (weak, nonatomic) IBOutlet NSString *categoryTypeNameLeb;
+- (IBAction)btnDoneAction:(id)sender;
 
 @end

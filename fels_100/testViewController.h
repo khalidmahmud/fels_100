@@ -25,6 +25,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalNumberOfQuestion;
 @property (weak, nonatomic) IBOutlet UILabel *numberOfQuestion;
 - (IBAction)selectOptionAction:(id)sender;
+- (IBAction)btnSpechAction:(id)sender;
+- (IBAction)btnBackAction:(id)sender;
+
 @end
 
 

@@ -9,6 +9,7 @@
 #import "resultViewController.h"
 #import "resultTableViewCell.h"
 #import "categoriesTableViewCell.h"
+#import "categoriesViewController.h"
 
 @interface resultViewController ()
 
@@ -64,6 +65,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return  60.0f;
+}
+
+- (IBAction)btnDoneAction:(id)sender {
+    for (UIViewController* controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[categoriesViewController class]]) {
+            [self.navigationController popToViewController:controller animated:YES];
+            return;
+        }
+    }
 }
 
 @end

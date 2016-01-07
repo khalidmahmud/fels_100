@@ -495,6 +495,9 @@
                                     <constraint firstAttribute="height" constant="41" id="ZsT-AN-a7Q"/>
                                 </constraints>
                                 <state key="normal" title="Lesson"/>
+                                <connections>
+                                    <segue destination="Bfv-Et-PVl" kind="show" id="iAK-90-W1Z"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -796,6 +799,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ii-0I-49y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-465" y="727"/>
+        </scene>
+        <!--CategoriesLesson-->
+        <scene sceneID="2Gh-um-XWT">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CategoriesLesson" id="Bfv-Et-PVl" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7s7-Ku-DBr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="20.5" y="1002"/>
         </scene>
     </scenes>
     <resources>
