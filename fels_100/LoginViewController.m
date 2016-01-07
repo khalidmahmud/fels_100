@@ -29,16 +29,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString: @"ToProfile"]) {
-        ProfileController *destination = segue.destinationViewController;
-        destination.theID = self.theID;
-        destination.auth_token = self.theAuthentication;
-    }
-}
-
 #pragma mark - IBAction
 
 - (IBAction)loginButton:(id)sender {
@@ -51,15 +41,15 @@
                   [MBProgressHUD hideHUDForView:self.view animated:YES];
                   if (isAccepted){
                       NSLog(@"logged in");
-                      self.theID = [theDictionary objectForKey: @"id"];
-                      self.theAuthentication = [theDictionary objectForKey: @"authToken"];
-                      [User sharedInstance].theToken = self.theAuthentication;
-                      [User sharedInstance].theId = self.theID;
+                      [User sharedInstance].theToken = [theDictionary objectForKey: @"authToken"];
+                      [User sharedInstance].theId = [theDictionary objectForKey: @"id"];
                       if (self.checkRemember) {
                           [self saveIdToken];
                       }
                       [self clearFields];
-                      [self performSegueWithIdentifier: @"ToProfile" sender:self];
+                      [[NSUserDefaults standardUserDefaults] setBool:YES forKey: @"flag"];
+                      [[NSUserDefaults standardUserDefaults] synchronize];
+                      [self dismissViewControllerAnimated:YES completion:nil];
                   } else {
                       NSLog(@"not logged in");
                       self.loginRequirementLabel.text = @"Email or password incorrect";
@@ -85,8 +75,8 @@
 - (void)saveIdToken {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:YES forKey: @"data"];
-    [defaults setObject:self.theID forKey: @"id"];
-    [defaults setObject:self.theAuthentication forKey: @"token"];
+    [defaults setObject:[User sharedInstance].theId forKey: @"id"];
+    [defaults setObject:[User sharedInstance].theToken forKey: @"token"];
     [defaults synchronize];
     NSLog(@"Data saved");
 }

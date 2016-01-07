@@ -10,8 +10,6 @@
 
 @interface ProfileController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
-@property (strong, nonatomic) NSString *theID;
-@property (strong, nonatomic) NSString *auth_token;
 @property (strong, nonatomic) NSString *pictureString;
 @property (strong, nonatomic) NSArray *activityArray;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePicture;

@@ -13,8 +13,6 @@
 @property (strong, nonatomic) NSString *emailUpdate;
 @property (strong, nonatomic) NSString *nameUpdate;
 @property (strong, nonatomic) NSString *theString;
-@property (strong, nonatomic) NSString *tokenUpdate;
-@property (strong, nonatomic) NSString *theID;
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
 @property (strong, nonatomic) UIImage *images;
 @property (weak, nonatomic) IBOutlet UIImageView *theImageView;

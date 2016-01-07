@@ -15,8 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *loginRequirementLabel;
 @property (weak, nonatomic) IBOutlet UIButton *remeberMeBox;
 @property (assign, nonatomic) BOOL checkRemember;
-@property (strong, nonatomic) NSString *theID;
-@property (strong, nonatomic) NSString *theAuthentication;
 
 - (IBAction)loginButton:(id)sender;
 - (IBAction)rememberMeBox:(id)sender;

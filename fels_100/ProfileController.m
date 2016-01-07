@@ -10,6 +10,7 @@
 #import "DataAccess.h"
 #import "MBProgressHUD.h"
 #import "UpdateController.h"
+#import "User.h"
 
 @interface ProfileController ()
 
@@ -22,6 +23,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey: @"flag"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,11 +32,43 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey: @"flag"]) {
+        [self loadData];
+    } else {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey: @"data"]) {
+            [User sharedInstance].theId = [[NSUserDefaults standardUserDefaults] objectForKey: @"id"];
+            [User sharedInstance].theToken = [[NSUserDefaults standardUserDefaults] objectForKey: @"token"];
+            [self loadData];
+        } else {
+            [self performSegueWithIdentifier: @"ToLogin" sender:self];
+        }
+    }
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString: @"ToUpdate"]) {
+        UpdateController *destination = segue.destinationViewController;
+        destination.emailUpdate = self.profileEmail.text;
+        destination.nameUpdate = self.profileName.text;
+        destination.theString =  self.pictureString;
+    }
+}
+
+#pragma mark - Private 
+
+- (NSString *)getSubstring:(NSString *)mainString {
+    NSArray *substrings = [mainString componentsSeparatedByString: @"T"];
+    return (substrings.count > 0) ? [substrings objectAtIndex:0] : @"" ;
+}
+
+- (void)loadData {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     DataAccess *access = [[DataAccess alloc] init];
-    [access fetchData:self.theID Token:self.auth_token complete:^(BOOL isAccepted,NSDictionary *theDic) {
+    [access fetchData:[User sharedInstance].theId Token:[User sharedInstance].theToken complete:^(BOOL isAccepted,NSDictionary *theDic) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (isAccepted) {
             if (theDic) {
@@ -53,26 +88,6 @@
             NSLog(@"Error");
         }
     }];
-}
-
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString: @"ToUpdate"]) {
-        UpdateController *destination = segue.destinationViewController;
-        destination.emailUpdate = self.profileEmail.text;
-        destination.nameUpdate = self.profileName.text;
-        destination.theString =  self.pictureString;
-        destination.tokenUpdate = self.auth_token;
-        destination.theID = self.theID;
-    }
-}
-
-#pragma mark - Private 
-
-- (NSString *)getSubstring:(NSString *)mainString {
-    NSArray *substrings = [mainString componentsSeparatedByString: @"T"];
-    return (substrings.count > 0) ? [substrings objectAtIndex:0] : @"" ;
 }
 
 #pragma mark - UITableViewDataSource
@@ -107,9 +122,11 @@
 - (IBAction)logoutButton:(id)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:NO forKey: @"data"];
+    [defaults setBool:NO forKey: @"flag"];
     [defaults setObject: @"" forKey: @"id"];
     [defaults setObject: @"" forKey: @"token"];
     [defaults synchronize];
+    [self performSegueWithIdentifier: @"ToLogin" sender:self];
 }
 
 @end
