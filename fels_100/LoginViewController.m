@@ -10,6 +10,7 @@
 #import "ProfileController.h"
 #import "MBProgressHUD.h"
 #import "DataAccess.h"
+#import "User.h"
 
 @interface LoginViewController ()
 
@@ -52,6 +53,8 @@
                       NSLog(@"logged in");
                       self.theID = [theDictionary objectForKey: @"id"];
                       self.theAuthentication = [theDictionary objectForKey: @"authToken"];
+                      [User sharedInstance].theToken = self.theAuthentication;
+                      [User sharedInstance].theId = self.theID;
                       if (self.checkRemember) {
                           [self saveIdToken];
                       }
