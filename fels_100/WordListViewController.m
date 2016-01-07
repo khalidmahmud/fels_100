@@ -8,6 +8,8 @@
 
 #import "WordListViewController.h"
 #import "DataAccess.h"
+#import "User.h"
+#import "MBProgressHUD.h"
 
 @interface WordListViewController ()
 
@@ -21,7 +23,7 @@
     self.filterData1 = [[NSMutableArray alloc] init];
     self.filterData2 = [[NSArray alloc] initWithObjects:@"All",@"Learned",@"Not learn", nil];
     self.filterData2Compare = [[NSArray alloc] initWithObjects:@"all_word",@"learned",@"no_learn", nil];
-    
+    self.authenticationToken = [User sharedInstance].theToken;
     self.resultData = [[NSMutableArray alloc] init];
     self.filterTable1.hidden = YES;
     self.filterTable2.hidden = YES;
@@ -30,7 +32,7 @@
     self.optionsFilter = @"all_word";
     self.wordsCurrentPage = 1;
     self.categoriesCurrentPage = 1;
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     DataAccess *accessWord = [[DataAccess alloc] init];
     //initial values
     [accessWord categoryId:@(self.categoryId)
@@ -39,6 +41,7 @@
                  authToken:self.authenticationToken
                   complete: ^ (NSDictionary *wordsReturn) {
                       if (wordsReturn != nil) {
+                          [MBProgressHUD hideHUDForView:self.view animated:YES];
                           if ([wordsReturn objectForKey:@"words"] && [wordsReturn objectForKey:@"total_pages"]) {
                               [self.resultData addObjectsFromArray:[wordsReturn objectForKey:@"words"]];
                               self.wordsTotalPage = [[wordsReturn objectForKey:@"total_pages"] integerValue];
@@ -104,6 +107,8 @@
     if (tableView == self.filterTable1) {
         if( [[self.filterData1 objectAtIndex:indexPath.row] objectForKey:@"name"] != nil) {
         cell.textLabel.text = [[self.filterData1 objectAtIndex:indexPath.row] objectForKey:@"name"];
+        cell.textLabel.numberOfLines = 2;
+        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
         } else {
             NSLog(@" Error Occured in Categories....");
         }
@@ -141,6 +146,7 @@
         [self.filterButton1 setTitle:cell.textLabel.text forState:UIControlStateNormal];
         self.filterTable1.hidden = YES;
         if (currentCategoryId != self.categoryId) {
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             self.wordsCurrentPage = 1;
             DataAccess *accessWord2 = [[DataAccess alloc] init];
             //initial values
@@ -149,6 +155,7 @@
                                page:@(self.wordsCurrentPage)
                           authToken:self.authenticationToken
                            complete: ^ (NSDictionary *wordsReturn) {
+                              [MBProgressHUD hideHUDForView:self.view animated:YES];
                                if (wordsReturn != nil) {
                                    if ([wordsReturn objectForKey:@"words"] && [wordsReturn objectForKey:@"total_pages"]) {
                                        [self.resultData removeAllObjects];
@@ -172,6 +179,7 @@
         [self.filterButton2 setTitle:cell.textLabel.text forState:UIControlStateNormal];
         self.filterTable2.hidden = YES;
         if (currentSelectedOption != self.optionsFilter) {
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             DataAccess *accessWord3 = [[DataAccess alloc]init];
             self.wordsCurrentPage = 1;
             [accessWord3 categoryId:@(self.categoryId)
@@ -179,6 +187,7 @@
                                page:@(self.wordsCurrentPage)
                           authToken:self.authenticationToken
                            complete: ^ (NSDictionary *wordsReturn) {
+                               [MBProgressHUD hideHUDForView:self.view animated:YES];
                                if (wordsReturn != nil) {
                                    if ([wordsReturn objectForKey:@"words"] && [wordsReturn objectForKey:@"total_pages"]) {
                                        [self.resultData removeAllObjects];
@@ -225,6 +234,10 @@
     }
 }
 
+- (IBAction)backToProfile:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     if (scrollView == self.resultTable) {
@@ -247,6 +260,7 @@
         if (self.wordsCurrentPage == self.wordsTotalPage) {
             NSLog(@"Reached page Limit");
         } else {
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             self.wordsCurrentPage = self.wordsCurrentPage + 1;
             DataAccess *accessWord2 = [[DataAccess alloc] init];
             [accessWord2 categoryId:@(self.categoryId)
@@ -254,6 +268,7 @@
                                  page:@(self.wordsCurrentPage)
                           authToken:self.authenticationToken
                            complete: ^ (NSDictionary *wordsReturn) {
+                               [MBProgressHUD hideHUDForView:self.view animated:YES];
                                if (wordsReturn != nil) {
                                   [self.resultData addObjectsFromArray:[wordsReturn objectForKey:@"words"]];
                                   [self.resultTable reloadData];
@@ -266,11 +281,13 @@
         if (self.categoriesCurrentPage == self.categoriesTotalPage) {
             NSLog(@"Reached page Limit of Categories");
         } else {
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             self.categoriesCurrentPage = self.categoriesCurrentPage + 1;
             DataAccess *accessCategories2 = [[DataAccess alloc] init];
             [accessCategories2     page:@(self.categoriesCurrentPage)
                                authToken:self.authenticationToken
                                 complete: ^ (NSDictionary *categoriesReturn) {
+                                    [MBProgressHUD hideHUDForView:self.view animated:YES];
                                     if (categoriesReturn != nil) {
                                         [self.filterData1 addObjectsFromArray:[categoriesReturn objectForKey:@"categories"]];
                                         [self.filterTable1 reloadData];
