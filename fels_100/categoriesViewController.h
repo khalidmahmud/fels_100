@@ -14,4 +14,6 @@
 @property int totalPage;
 @property(strong, nonatomic)  NSNumber *currentPage;
 @property(strong, nonatomic)  NSString *authenticationToken;
+- (IBAction)btnBackAction:(id)sender;
+
 @end

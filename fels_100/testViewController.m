@@ -9,6 +9,9 @@
 #import "testViewController.h"
 #import "DataAccess.h"
 #import "resultViewController.h"
+#import "User.h"
+#import "categoriesViewController.h"
+@import AVFoundation;
 
 @interface testViewController () {
     NSDictionary *lesson;
@@ -28,10 +31,9 @@
     [super viewDidLoad];
     self.testRecordDictionary = [[NSMutableArray alloc]init];
     self.lessonNavigationBar.topItem.title = self.categoryTypeName;
-    //self.authenticationToken = @"nCVjGJZZQDx-uvenYiwQ0w";
+    self.authenticationToken = [User sharedInstance].theToken;
     self.currentQuestionNumber = 1;
     [self getLessonByCategoryTypeId];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,12 +48,11 @@
                 if (check) {
                     lesson = [categoriesDictionary objectForKey:@"lesson"];
                     self.lessonId = [[lesson objectForKey:@"id"] integerValue];
-                    self.arrayOfWords= (NSArray *)[lesson objectForKey:@"words"];
+                    self.arrayOfWords = (NSArray *)[lesson objectForKey:@"words"];
                      self.totalNumberOfQuestion.text = [[NSNumber numberWithInteger:self.arrayOfWords.count] stringValue];
                      self.numberOfQuestion.text = [[NSNumber numberWithInteger:self.currentQuestionNumber] stringValue];
                      newarray = (NSArray *)[lesson objectForKey:@"words"];
                      NSDictionary *newQuestionDictionary = (NSDictionary *)[self.arrayOfWords objectAtIndex:1];
-                                      //NSLog(@"newarray  Wrods   %@", self.arrayOfWords);
                     [self loadNewQuestion:self.currentQuestionNumber-1 ];
             }
         }];
@@ -76,7 +77,6 @@
             else {
                 [self.btnForthOption setTitle:[newRow objectForKey:@"content"] forState:(UIControlStateNormal)];
             }
-        // NSLog(@" %d  %@  arrayOfWord",i, [newRow objectForKey:@"content"]);
         }
     }
 }
@@ -90,6 +90,22 @@
                               delegate:self cancelButtonTitle:@"NO"
                               otherButtonTitles:@"YES", nil];
     [alertView show];
+}
+
+- (IBAction)btnSpechAction:(id)sender {
+    AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc]init];
+    AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:self.questionContent.text];
+    [utterance setRate:0.2f];
+    [synthesizer speakUtterance:utterance];
+}
+
+- (IBAction)btnBackAction:(id)sender {
+    for (UIViewController* controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[categoriesViewController class]]) {
+            [self.navigationController popToViewController:controller animated:YES];
+            return;
+        }
+    }
 }
 
 -(void)updateLesson:(NSNumber *)result_id answer_id:(NSNumber *)answer_id {
@@ -133,7 +149,6 @@
         }
         [self updateLesson:[checkAnswer objectForKey:@"id"]
                  answer_id:[checkAnswer objectForKey:@"answer_id"]];
-        //NSLog(@"testRecordDictionary %@",testRecordDictionary);
         if(self.currentQuestionNumber+1 <= self.arrayOfWords.count ) {
             self.currentQuestionNumber += 1;
             self.numberOfQuestion.text = [[NSNumber numberWithInteger: self.currentQuestionNumber] stringValue];
@@ -159,18 +174,15 @@
         [newdata setValue:[newQuestionDictionary objectForKey:@"id"] forKey:@"id"];
         [newdata setValue:[newRow objectForKey:@"is_correct"] forKey:@"is_correct"];
         if([[newRow objectForKey:@"is_correct"] integerValue] == 1) {
-        //NSLog(@"option %d",selectedOption);
             [newdata setValue:[newRow objectForKey:@"content"] forKey:@"answer_content"];
             [newdata setValue:[newRow objectForKey:@"id"] forKey:@"answer_id"];
         }
         else {
-        //NSLog(@"fdn sdfkjv sdfkj sdjko   sj");
             for(int i = 0;i < answer.count ;i++)
             {
                 NSDictionary *anotherDic = (NSDictionary *)[answer objectAtIndex:i];
                 if([[anotherDic objectForKey:@"is_correct"] integerValue] == 1)
                 {
-                    //NSLog(@"option %d",i);
                     [newdata setValue:[anotherDic objectForKey:@"content"] forKey:@"answer_content"];
                     [newdata setValue:[anotherDic objectForKey:@"id"] forKey:@"answer_id"];
                     break;
@@ -178,7 +190,6 @@
             }
         }
     }
-    //  NSLog(@"new data %@",newdata);
     return newdata;
 }
 
